@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import pandas as pd
 import pydeck as pdk
 import streamlit as st
@@ -21,23 +21,18 @@ if "location_added_message" in st.session_state:
     st.success(st.session_state.location_added_message)
     del st.session_state.location_added_message
 
-
 # ---------------------------------------------------------
 # FILE PATHS
 # ---------------------------------------------------------
 
-DATA_FOLDER = r"C:\Python\food_proj\data"
+# Folder containing this Streamlit script
+APP_FOLDER = Path(__file__).resolve().parent
 
-BASE_FILE = os.path.join(
-    DATA_FOLDER,
-    "food_loc.xlsx"
-)
+# Data subfolder visible in the GitHub repository
+DATA_FOLDER = APP_FOLDER / "data"
 
-USER_LOCATIONS_FILE = os.path.join(
-    DATA_FOLDER,
-    "user_added_locations.csv"
-)
-
+BASE_FILE = DATA_FOLDER / "food_loc.xlsx"
+USER_LOCATIONS_FILE = DATA_FOLDER / "user_added_locations.csv"
 
 # ---------------------------------------------------------
 # REQUIRED COLUMNS
