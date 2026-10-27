@@ -12,6 +12,7 @@ st.set_page_config(
     page_title="My Food Spots",
     layout="wide"
 )
+
 st.markdown(
     """
     <style>
@@ -26,132 +27,32 @@ st.markdown(
         --accent-hover: #A9E92F;
     }
 
-    /* Sidebar open / close arrows */
-    [data-testid="stSidebarCollapseButton"] button,
-    [data-testid="stSidebarCollapsedControl"] button {
-        color: #F4F7FA !important;
-        background-color: transparent !important;
-    }
-
-    /* Arrow icons */
-    [data-testid="stSidebarCollapseButton"] svg,
-    [data-testid="stSidebarCollapsedControl"] svg {
-        color: #F4F7FA !important;
-        fill: #F4F7FA !important;
-        stroke: #F4F7FA !important;
-    }
-
-    /* Lime hover */
-    [data-testid="stSidebarCollapseButton"] button:hover svg,
-    [data-testid="stSidebarCollapsedControl"] button:hover svg {
-        color: #C1FD3B !important;
-        fill: #C1FD3B !important;
-        stroke: #C1FD3B !important;
-    }
-
-    /* App and top banner */
-    html, body, .stApp,
-    [data-testid="stAppViewContainer"],
-    [data-testid="stMain"],
-    [data-testid="stMainBlockContainer"],
+    /* Top header */
     [data-testid="stHeader"],
     [data-testid="stToolbar"] {
         background: var(--bg) !important;
-        color: var(--text) !important;
     }
 
     [data-testid="stDecoration"] {
         display: none !important;
     }
 
-    [data-testid="stHeader"] button,
-    [data-testid="stHeader"] svg {
-        color: var(--muted) !important;
-        fill: var(--muted) !important;
-    }
-
-    /* Sidebar */
-    [data-testid="stSidebar"],
-    [data-testid="stSidebarContent"] {
-        background: var(--panel) !important;
+    /* Sidebar open/close arrows */
+    [data-testid="stSidebarCollapseButton"] svg,
+    [data-testid="stSidebarCollapsedControl"] svg {
         color: var(--text) !important;
+        fill: var(--text) !important;
+        stroke: var(--text) !important;
     }
 
-    [data-testid="stSidebar"] h1,
-    [data-testid="stSidebar"] h2,
-    [data-testid="stSidebar"] h3,
-    [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] label,
-    [data-testid="stSidebar"] span {
-        color: var(--text) !important;
-    }
-
-    [data-testid="stSidebar"] small,
-    [data-testid="stCaptionContainer"] {
-        color: var(--muted) !important;
-    }
-
-    /* Selected Location Type pills */
-    [data-testid="stSidebar"] [data-baseweb="tag"] {
-        background-color: #30363D !important;
-        border: 1px solid #484F58 !important;
-        color: #F4F7FA !important;
-    }
-
-    /* Text inside pills */
-    [data-testid="stSidebar"] [data-baseweb="tag"] span {
-        color: #F4F7FA !important;
-    }
-
-    /* X icon inside pills */
-    [data-testid="stSidebar"] [data-baseweb="tag"] svg {
-        color: #C5CDD6 !important;
-        fill: #C5CDD6 !important;
-    }
-
-    /* Subtle hover */
-    [data-testid="stSidebar"] [data-baseweb="tag"]:hover {
-        background-color: #3D444D !important;
-        border-color: #6E7681 !important;
-    }
-
-    /* Sidebar dropdown */
-    [data-baseweb="popover"],
-    [data-baseweb="menu"],
-    [role="listbox"],
-    [role="option"] {
-        background: var(--panel) !important;
-        color: var(--text) !important;
-    }
-
-    [role="option"]:hover,
-    [role="option"][aria-selected="true"] {
-        background: #29331E !important;
+    [data-testid="stSidebarCollapseButton"] button:hover svg,
+    [data-testid="stSidebarCollapsedControl"] button:hover svg {
         color: var(--accent) !important;
+        fill: var(--accent) !important;
+        stroke: var(--accent) !important;
     }
 
-    /* Sidebar checkboxes: replace red with lime */
-    [data-testid="stSidebar"]
-    [data-testid="stCheckbox"]
-    div[role="checkbox"] {
-        border-color: var(--accent) !important;
-    }
-
-    [data-testid="stSidebar"]
-    [data-testid="stCheckbox"]
-    div[role="checkbox"][aria-checked="true"] {
-        background: var(--accent) !important;
-        border-color: var(--accent) !important;
-    }
-
-    [data-testid="stSidebar"]
-    [data-testid="stCheckbox"]
-    div[role="checkbox"][aria-checked="true"] svg {
-        color: var(--bg) !important;
-        fill: var(--bg) !important;
-    }
-
-    /* Inputs */
+    /* Form inputs */
     [data-testid="stTextInput"] input,
     [data-testid="stNumberInput"] input {
         background: var(--field) !important;
@@ -160,18 +61,12 @@ st.markdown(
         caret-color: var(--accent) !important;
     }
 
-    [data-testid="stTextInput"] input:focus,
-    [data-testid="stNumberInput"] input:focus {
-        border-color: var(--accent) !important;
-        box-shadow: 0 0 0 1px var(--accent) !important;
-    }
-
     input::placeholder {
         color: var(--muted) !important;
         opacity: 1 !important;
     }
 
-    /* Buttons */
+    /* Primary buttons */
     button[kind="primary"],
     [data-testid="stFormSubmitButton"] button {
         background: var(--accent) !important;
@@ -186,6 +81,7 @@ st.markdown(
         border-color: var(--accent-hover) !important;
     }
 
+    /* Secondary/download buttons */
     button[kind="secondary"],
     [data-testid="stDownloadButton"] button {
         background: var(--panel) !important;
@@ -193,18 +89,35 @@ st.markdown(
         border: 1px solid var(--accent) !important;
     }
 
-    /* Expanders and alerts */
-    [data-testid="stExpander"],
-    [data-testid="stAlert"] {
+    /* Expanders */
+    [data-testid="stExpander"] {
         background: var(--panel) !important;
-        color: var(--text) !important;
         border: 1px solid var(--border) !important;
         border-radius: 8px !important;
     }
 
-    [data-testid="stExpander"] summary,
-    [data-testid="stExpander"] summary p {
+    [data-testid="stExpander"] summary {
+        background: var(--panel) !important;
+        border-radius: 8px !important;
+    }
+
+    [data-testid="stExpander"] summary p,
+    [data-testid="stExpander"] summary span,
+    [data-testid="stExpander"] summary svg {
         color: var(--text) !important;
+        fill: var(--text) !important;
+    }
+
+    /* Expander hover */
+    [data-testid="stExpander"] summary:hover {
+        background: var(--field) !important;
+    }
+
+    [data-testid="stExpander"] summary:hover p,
+    [data-testid="stExpander"] summary:hover span,
+    [data-testid="stExpander"] summary:hover svg {
+        color: var(--accent) !important;
+        fill: var(--accent) !important;
     }
 
     /* Global accents */
@@ -214,50 +127,6 @@ st.markdown(
 
     *:focus-visible {
         outline-color: var(--accent) !important;
-    }
-
-    ::selection {
-        background: var(--accent);
-        color: var(--bg);
-    }
-
-    /* Expander titles: prevent white hover background */
-    [data-testid="stExpander"] summary {
-        background-color: var(--panel) !important;
-        color: var(--text) !important;
-        border-radius: 8px !important;
-    }
-
-    /* Keep header dark and change title to lime on hover */
-    [data-testid="stExpander"] summary:hover {
-        background-color: #20262E !important;
-        color: var(--accent) !important;
-    }
-
-    /* Expander title text */
-    [data-testid="stExpander"] summary p,
-    [data-testid="stExpander"] summary span {
-        color: var(--text) !important;
-    }
-
-    /* Title text on hover */
-    [data-testid="stExpander"] summary:hover p,
-    [data-testid="stExpander"] summary:hover span {
-        color: var(--accent) !important;
-    }
-
-    /* Expander arrow */
-    [data-testid="stExpander"] summary svg {
-        color: var(--text) !important;
-        fill: var(--text) !important;
-        stroke: var(--text) !important;
-    }
-
-    /* Expander arrow on hover */
-    [data-testid="stExpander"] summary:hover svg {
-        color: var(--accent) !important;
-        fill: var(--accent) !important;
-        stroke: var(--accent) !important;
     }
     </style>
     """,
