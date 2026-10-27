@@ -91,31 +91,28 @@ st.markdown(
         color: var(--muted) !important;
     }
 
-    /* Sidebar multiselect */
-    [data-testid="stSidebar"] [data-baseweb="select"] > div {
-        background: var(--field) !important;
-        border-color: var(--border) !important;
-        color: var(--text) !important;
-    }
-
-    [data-testid="stSidebar"] [data-baseweb="select"] > div:focus-within {
-        border-color: var(--accent) !important;
-        box-shadow: 0 0 0 1px var(--accent) !important;
-    }
-
-    [data-testid="stSidebar"] [data-baseweb="select"] input {
-        color: var(--text) !important;
-        caret-color: var(--accent) !important;
-    }
-
+    /* Selected Location Type pills */
     [data-testid="stSidebar"] [data-baseweb="tag"] {
-        background: var(--accent) !important;
+        background-color: #30363D !important;
+        border: 1px solid #484F58 !important;
+        color: #F4F7FA !important;
     }
 
-    [data-testid="stSidebar"] [data-baseweb="tag"] span,
+    /* Text inside pills */
+    [data-testid="stSidebar"] [data-baseweb="tag"] span {
+        color: #F4F7FA !important;
+    }
+
+    /* X icon inside pills */
     [data-testid="stSidebar"] [data-baseweb="tag"] svg {
-        color: var(--bg) !important;
-        fill: var(--bg) !important;
+        color: #C5CDD6 !important;
+        fill: #C5CDD6 !important;
+    }
+
+    /* Subtle hover */
+    [data-testid="stSidebar"] [data-baseweb="tag"]:hover {
+        background-color: #3D444D !important;
+        border-color: #6E7681 !important;
     }
 
     /* Sidebar dropdown */
@@ -223,7 +220,7 @@ st.markdown(
         background: var(--accent);
         color: var(--bg);
     }
-    
+
     /* Expander titles: prevent white hover background */
     [data-testid="stExpander"] summary {
         background-color: var(--panel) !important;
