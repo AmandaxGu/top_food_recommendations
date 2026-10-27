@@ -1,0 +1,3502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c8c5c7f194316af39e59044d8c1c455c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_c8c5c7f194316af39e59044d8c1c455c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c8c5c7f194316af39e59044d8c1c455c = L.map(
+                "map_c8c5c7f194316af39e59044d8c1c455c",
+                {
+                    center: [40.0, -100.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 4,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+
+            
+
+        
+    
+            var tile_layer_1d30dd80f235a815d78096cfb5542bbd = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_1d30dd80f235a815d78096cfb5542bbd.addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            var circle_marker_dc8861aed84a3a830bcd41066bcfd6e1 = L.circleMarker(
+                [43.169354, -77.703269],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_dc8861aed84a3a830bcd41066bcfd6e1.bindTooltip(
+                `<div>
+                     
+            <b>The Food Market</b><br>
+            Type: Restaurant<br>
+            Region: Rochester, NY area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f37b7c32ba72ebc3814c8143596ab24a = L.circleMarker(
+                [43.182902, -77.681379],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_f37b7c32ba72ebc3814c8143596ab24a.bindTooltip(
+                `<div>
+                     
+            <b>Rimal Coffee House</b><br>
+            Type: Coffee shop<br>
+            Region: Rochester, NY area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_088e61c81acdb16cf6aa955aa1edaa09 = L.circleMarker(
+                [43.15731, -77.59742],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_088e61c81acdb16cf6aa955aa1edaa09.bindTooltip(
+                `<div>
+                     
+            <b>Redd</b><br>
+            Type: New American restaurant<br>
+            Region: Rochester, NY area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0c86dee5adcfcbc4cfee2a989e186774 = L.circleMarker(
+                [43.143814, -77.58941],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_0c86dee5adcfcbc4cfee2a989e186774.bindTooltip(
+                `<div>
+                     
+            <b>Hydra Coffeehouse</b><br>
+            Type: Coffee shop<br>
+            Region: Rochester, NY area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_523f1bb74823210da990ddcb0aec62f7 = L.circleMarker(
+                [43.150158, -77.600998],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_523f1bb74823210da990ddcb0aec62f7.bindTooltip(
+                `<div>
+                     
+            <b>The Owl House</b><br>
+            Type: New American restaurant<br>
+            Region: Rochester, NY area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_667a4f72e559792dfe7361cf77497b27 = L.circleMarker(
+                [43.21926, -77.642435],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_667a4f72e559792dfe7361cf77497b27.bindTooltip(
+                `<div>
+                     
+            <b>City of Rochester Public Market</b><br>
+            Type: Produce market<br>
+            Region: Rochester, NY area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_90153c179e1c69df5bcfe6316e340139 = L.circleMarker(
+                [43.088261, -77.515333],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_90153c179e1c69df5bcfe6316e340139.bindTooltip(
+                `<div>
+                     
+            <b>Neutral Ground Coffeehouse - Pittsford</b><br>
+            Type: Coffee shop<br>
+            Region: Rochester, NY area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_82c10855cbdc16338852ecb3e6b3f869 = L.circleMarker(
+                [43.11062, -77.652529],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_82c10855cbdc16338852ecb3e6b3f869.bindTooltip(
+                `<div>
+                     
+            <b>Twosome Place</b><br>
+            Type: Coffee shop<br>
+            Region: Rochester, NY area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca5ed9456d3949bc7b6154ff1cb6d143 = L.circleMarker(
+                [38.876149, -76.987557],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_ca5ed9456d3949bc7b6154ff1cb6d143.bindTooltip(
+                `<div>
+                     
+            <b>Xi'an Famous Foods </b><br>
+            Type:  Clarendon VA<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b12b76d9c5cee812eddf6c511e384fd2 = L.circleMarker(
+                [38.884639, -77.101717],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b12b76d9c5cee812eddf6c511e384fd2.bindTooltip(
+                `<div>
+                     
+            <b>Gong Cha Arlington</b><br>
+            Type: Bubble tea shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_533d2dd51409c8cb85b3a3fbf3cf0eb6 = L.circleMarker(
+                [38.965655, -76.999218],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_533d2dd51409c8cb85b3a3fbf3cf0eb6.bindTooltip(
+                `<div>
+                     
+            <b>ROUND Cafe </b><br>
+            Type:  coffee & tea mocktails<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_95331679ca891ee6c1d12bd24cc78ec2 = L.circleMarker(
+                [38.91011, -77.045579],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_95331679ca891ee6c1d12bd24cc78ec2.bindTooltip(
+                `<div>
+                     
+            <b>Umi Japanese Cuisine</b><br>
+            Type: Japanese restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ef75b613f32bc3a5c1f3cf4ecb2ddfd4 = L.circleMarker(
+                [38.968454, -77.053106],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_ef75b613f32bc3a5c1f3cf4ecb2ddfd4.bindTooltip(
+                `<div>
+                     
+            <b>Layali Coffee House</b><br>
+            Type: Coffee shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1b678df7df1bc3a5979cc0f215202043 = L.circleMarker(
+                [38.839201, -76.940002],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_1b678df7df1bc3a5979cc0f215202043.bindTooltip(
+                `<div>
+                     
+            <b>Spin & Savor</b><br>
+            Type: Sushi restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_40076aaef89d56206a872ce78182fc2d = L.circleMarker(
+                [38.873436, -77.114373],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_40076aaef89d56206a872ce78182fc2d.bindTooltip(
+                `<div>
+                     
+            <b>Lubber Run Community Center</b><br>
+            Type: Community center<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0daf57a13c99dda46eac24ad433135f7 = L.circleMarker(
+                [38.838162, -77.086487],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_0daf57a13c99dda46eac24ad433135f7.bindTooltip(
+                `<div>
+                     
+            <b>Supreme Hot Pot</b><br>
+            Type: Hot pot restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1001314f2aad90a77ded1c0622e31d10 = L.circleMarker(
+                [38.885526, -77.059369],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_1001314f2aad90a77ded1c0622e31d10.bindTooltip(
+                `<div>
+                     
+            <b>MoMoGoGo</b><br>
+            Type: Restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2f5316d2836de10ce597ce4d93e4ee5d = L.circleMarker(
+                [38.869038, -77.080166],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_2f5316d2836de10ce597ce4d93e4ee5d.bindTooltip(
+                `<div>
+                     
+            <b>Rocklands Barbeque and Grilling Company</b><br>
+            Type: Barbecue restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_df660dee9cfd2c6f220eb8e248b37de6 = L.circleMarker(
+                [38.927701, -77.090888],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_df660dee9cfd2c6f220eb8e248b37de6.bindTooltip(
+                `<div>
+                     
+            <b>Farooj Abo Alabed - فروج أبو العبد</b><br>
+            Type: Lebanese restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_68d20667fe1054f32ddb533a5ba5b98f = L.circleMarker(
+                [38.926741, -77.114524],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_68d20667fe1054f32ddb533a5ba5b98f.bindTooltip(
+                `<div>
+                     
+            <b>Beignets & Brew</b><br>
+            Type: Coffee shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_671e3d05606c48731014e7ac845bbf8a = L.circleMarker(
+                [38.81124, -77.155401],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_671e3d05606c48731014e7ac845bbf8a.bindTooltip(
+                `<div>
+                     
+            <b>Lumier's Chimney Cake</b><br>
+            Type: Dessert shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2dbdc282de7b3578ad4186d987c5b8c5 = L.circleMarker(
+                [38.89658, -77.09044],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_2dbdc282de7b3578ad4186d987c5b8c5.bindTooltip(
+                `<div>
+                     
+            <b>Namak Mandi</b><br>
+            Type: Pakistani restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0dc61b23c79d569657cb3ee0f0e9a2e4 = L.circleMarker(
+                [38.944104, -77.18237],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_0dc61b23c79d569657cb3ee0f0e9a2e4.bindTooltip(
+                `<div>
+                     
+            <b>Namak</b><br>
+            Type: Mediterranean restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_de14427a4378ba2c3881ad6eef8503d3 = L.circleMarker(
+                [38.85001, -77.097367],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_de14427a4378ba2c3881ad6eef8503d3.bindTooltip(
+                `<div>
+                     
+            <b>Tio Pele</b><br>
+            Type: Restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0a998d6aa992f3f80102e4f44c13d554 = L.circleMarker(
+                [38.882794, -77.021377],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_0a998d6aa992f3f80102e4f44c13d554.bindTooltip(
+                `<div>
+                     
+            <b>kokee Tea - L'enfant Plaza</b><br>
+            Type: Bubble tea shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2e9716c5c8a5ce033a95f02df5845aaa = L.circleMarker(
+                [38.944113, -77.069704],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_2e9716c5c8a5ce033a95f02df5845aaa.bindTooltip(
+                `<div>
+                     
+            <b>t.zone Dessert Bar</b><br>
+            Type: Bubble tea shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1102e53e9c6b06ab017b50b70920f22 = L.circleMarker(
+                [38.899138, -77.23875],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e1102e53e9c6b06ab017b50b70920f22.bindTooltip(
+                `<div>
+                     
+            <b>Layered.</b><br>
+            Type: Coffee shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8a07700f21a5d2988dae3d9773ac3e83 = L.circleMarker(
+                [38.899457, -77.186433],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_8a07700f21a5d2988dae3d9773ac3e83.bindTooltip(
+                `<div>
+                     
+            <b>Midori Tea House</b><br>
+            Type: Cafe<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8dad21cb347eca6988c99e11a5e6aadd = L.circleMarker(
+                [38.880001, -77.039246],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_8dad21cb347eca6988c99e11a5e6aadd.bindTooltip(
+                `<div>
+                     
+            <b>Dessert 39</b><br>
+            Type: Dessert shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e5e51ade549b4f703b48d85f56e6da88 = L.circleMarker(
+                [38.889846, -77.066596],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e5e51ade549b4f703b48d85f56e6da88.bindTooltip(
+                `<div>
+                     
+            <b>Habibi House Cafe</b><br>
+            Type: Coffee shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5b3401199cbce34aaec6321b8a5603c3 = L.circleMarker(
+                [38.928664, -77.146909],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_5b3401199cbce34aaec6321b8a5603c3.bindTooltip(
+                `<div>
+                     
+            <b>CHICHA San Chen</b><br>
+            Type: Restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_956c9120762b496d4ca96de781ad91e7 = L.circleMarker(
+                [38.846555, -77.077614],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_956c9120762b496d4ca96de781ad91e7.bindTooltip(
+                `<div>
+                     
+            <b>Chasin' Tails: Seafood that Celebrates!</b><br>
+            Type: Seafood restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_653eec3633737221eda631939ad330ef = L.circleMarker(
+                [38.905197, -77.064964],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_653eec3633737221eda631939ad330ef.bindTooltip(
+                `<div>
+                     
+            <b>Constellation</b><br>
+            Type: Cafe<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ccb08a826556d8dfb21c9572dbf9346 = L.circleMarker(
+                [38.930322, -77.035296],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_3ccb08a826556d8dfb21c9572dbf9346.bindTooltip(
+                `<div>
+                     
+            <b>Dolce Morso Cafe</b><br>
+            Type: Coffee shop<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_88d6a7c18998f3ee25c80b8dc4b7ca9d = L.circleMarker(
+                [38.843762, -77.047859],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_88d6a7c18998f3ee25c80b8dc4b7ca9d.bindTooltip(
+                `<div>
+                     
+            <b>Jessie Taylor Seafood</b><br>
+            Type: Seafood market/restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_256768073893ec29fd842cd19121d2c7 = L.circleMarker(
+                [38.910677, -76.941664],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_256768073893ec29fd842cd19121d2c7.bindTooltip(
+                `<div>
+                     
+            <b>Genki Wagyu Shabu House 元気</b><br>
+            Type: Japanese restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9637ab2a86bd67bd0eddf44216d72e44 = L.circleMarker(
+                [41.879365, -87.626452],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9637ab2a86bd67bd0eddf44216d72e44.bindTooltip(
+                `<div>
+                     
+            <b>AMBAR Restaurant, Chicago</b><br>
+            Type: Restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81bb80a71258ea0c68e14bac1bc1d33c = L.circleMarker(
+                [38.874892, -77.105399],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_81bb80a71258ea0c68e14bac1bc1d33c.bindTooltip(
+                `<div>
+                     
+            <b>Courthaus Social</b><br>
+            Type: Beer garden<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_285408fc0cc9b45c11c15ecfb1a183f3 = L.circleMarker(
+                [38.929597, -77.013105],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_285408fc0cc9b45c11c15ecfb1a183f3.bindTooltip(
+                `<div>
+                     
+            <b>Felah Village Kebab & Steak</b><br>
+            Type: Turkish restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e531b793950e76cd61a1ba38edf19c19 = L.circleMarker(
+                [38.867387, -77.116274],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e531b793950e76cd61a1ba38edf19c19.bindTooltip(
+                `<div>
+                     
+            <b>Linjee Thai</b><br>
+            Type: Thai restaurant<br>
+            Region: Washington, DC / Northern Virginia area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7ddb55eaf7212f17711372a6a5ed798a = L.circleMarker(
+                [49.250473, -123.046001],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_7ddb55eaf7212f17711372a6a5ed798a.bindTooltip(
+                `<div>
+                     
+            <b>Pho Anh Vu East Vancouver</b><br>
+            Type: Vietnamese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ef1339ab61f36f65822d508ede1b56e7 = L.circleMarker(
+                [49.23682, -123.064621],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_ef1339ab61f36f65822d508ede1b56e7.bindTooltip(
+                `<div>
+                     
+            <b>Crab Hot Lau (Kingsway)</b><br>
+            Type: Hot pot restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fe8a6b48769a5fe2a17df0b92da047ab = L.circleMarker(
+                [49.158493, -123.095838],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_fe8a6b48769a5fe2a17df0b92da047ab.bindTooltip(
+                `<div>
+                     
+            <b>Rice Holic (Admiralty Centre)</b><br>
+            Type: Rice restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0166c99ba5dc4b80f5ddd3cf27ecab57 = L.circleMarker(
+                [49.218791, -123.019925],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_0166c99ba5dc4b80f5ddd3cf27ecab57.bindTooltip(
+                `<div>
+                     
+            <b>Bisou Bakehouse</b><br>
+            Type: Coffee shop<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2de99bab51bdfd11950ccc7cbacaddc3 = L.circleMarker(
+                [49.207822, -123.260819],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_2de99bab51bdfd11950ccc7cbacaddc3.bindTooltip(
+                `<div>
+                     
+            <b>Adulis Restaurant</b><br>
+            Type: Ethiopian restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_88e9017437704acde5682a9ca87ec686 = L.circleMarker(
+                [49.136751, -123.110171],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_88e9017437704acde5682a9ca87ec686.bindTooltip(
+                `<div>
+                     
+            <b>NÉN - AUTHENTIC VIETNAMESE CUISINE</b><br>
+            Type: Vietnamese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fc339e850ac598fae3bfd1e0111d6336 = L.circleMarker(
+                [49.152636, -123.174551],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_fc339e850ac598fae3bfd1e0111d6336.bindTooltip(
+                `<div>
+                     
+            <b>Rain or Shine Ice Cream</b><br>
+            Type: Ice cream shop<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_50cee6a1b10402877cd07c538532a137 = L.circleMarker(
+                [49.345787, -123.189756],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_50cee6a1b10402877cd07c538532a137.bindTooltip(
+                `<div>
+                     
+            <b>Fable Kitchen</b><br>
+            Type: Restaurant (permanently closed)<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_259f85a067cc2e6447aa574d5fabbcc8 = L.circleMarker(
+                [49.16325, -122.990641],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_259f85a067cc2e6447aa574d5fabbcc8.bindTooltip(
+                `<div>
+                     
+            <b>Blossom Teas</b><br>
+            Type: Bubble tea shop<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_21125f77bd9617fa7b259426f674fb8b = L.circleMarker(
+                [49.249424, -122.948121],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_21125f77bd9617fa7b259426f674fb8b.bindTooltip(
+                `<div>
+                     
+            <b>Lou Moro Park</b><br>
+            Type: Park<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dcc68cee3f19c04103264a8421d7a7e0 = L.circleMarker(
+                [49.222156, -122.919976],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_dcc68cee3f19c04103264a8421d7a7e0.bindTooltip(
+                `<div>
+                     
+            <b>Henry's Place</b><br>
+            Type: Dessert shop<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7c25a51f486a58df30ae1a6aae14e4e5 = L.circleMarker(
+                [49.213214, -122.909852],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_7c25a51f486a58df30ae1a6aae14e4e5.bindTooltip(
+                `<div>
+                     
+            <b>Torchio Pasta Bar</b><br>
+            Type: Italian restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_caca9b89b7c02e0b111c132862761672 = L.circleMarker(
+                [49.199299, -123.104257],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_caca9b89b7c02e0b111c132862761672.bindTooltip(
+                `<div>
+                     
+            <b>Green & Oak Malaysian Restaurant</b><br>
+            Type: Malaysian restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3ee7e93ff272cfd9ae895e1f9a10c285 = L.circleMarker(
+                [49.254488, -122.907012],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_3ee7e93ff272cfd9ae895e1f9a10c285.bindTooltip(
+                `<div>
+                     
+            <b>Sushi Mura Lougheed</b><br>
+            Type: Sushi restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0d289c5a23667c520a2f8f29243d5ba8 = L.circleMarker(
+                [49.199884, -123.137261],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_0d289c5a23667c520a2f8f29243d5ba8.bindTooltip(
+                `<div>
+                     
+            <b>Singapore Hawker</b><br>
+            Type: Singaporean restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_52d1ebee275c0bfa848cd729e2d95679 = L.circleMarker(
+                [49.318542, -122.978901],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_52d1ebee275c0bfa848cd729e2d95679.bindTooltip(
+                `<div>
+                     
+            <b>Ganh Vietnamese Kitchen</b><br>
+            Type: Vietnamese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7976365771d3deb2e018756d9dc9d5f1 = L.circleMarker(
+                [49.205832, -123.005036],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_7976365771d3deb2e018756d9dc9d5f1.bindTooltip(
+                `<div>
+                     
+            <b>Beijing Hot Pot Restaurant</b><br>
+            Type: Hot pot restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_42bc4edcf03ac9d48a2be4eb0ce62b69 = L.circleMarker(
+                [49.266337, -122.884217],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_42bc4edcf03ac9d48a2be4eb0ce62b69.bindTooltip(
+                `<div>
+                     
+            <b>Dao Field Noodle Shop</b><br>
+            Type: Chinese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b6a02a7f8837b43a82f0cce364986a3f = L.circleMarker(
+                [49.274775, -123.119096],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b6a02a7f8837b43a82f0cce364986a3f.bindTooltip(
+                `<div>
+                     
+            <b>Gyubee Japanese Grill (Vancouver)</b><br>
+            Type: Japanese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_07d7eb9554101bb57185edf5df37bde1 = L.circleMarker(
+                [49.303107, -123.0028],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_07d7eb9554101bb57185edf5df37bde1.bindTooltip(
+                `<div>
+                     
+            <b>Zenbu Aburi</b><br>
+            Type: Sushi restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7aae1a2ce4937cb11d48cc06f9973340 = L.circleMarker(
+                [49.251823, -123.25277],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_7aae1a2ce4937cb11d48cc06f9973340.bindTooltip(
+                `<div>
+                     
+            <b>Mango Yummy</b><br>
+            Type: Cafe<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b95bfe69e6d1975e59d860184c8b95d3 = L.circleMarker(
+                [49.276097, -123.129521],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b95bfe69e6d1975e59d860184c8b95d3.bindTooltip(
+                `<div>
+                     
+            <b>Okami Sushi - Japanese Restaurant, Bute Street Vancouver BC</b><br>
+            Type: Sushi restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8373d598b3d30e2983a72886e2e6c535 = L.circleMarker(
+                [49.176243, -123.0469],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_8373d598b3d30e2983a72886e2e6c535.bindTooltip(
+                `<div>
+                     
+            <b>Shanghai River Restaurant</b><br>
+            Type: Shanghainese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_80e7e79fc3d6557082b377785fa1665c = L.circleMarker(
+                [49.209524, -122.976842],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_80e7e79fc3d6557082b377785fa1665c.bindTooltip(
+                `<div>
+                     
+            <b>Jing Tan Grill House</b><br>
+            Type: Restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e87eb7766bff42ddf617dd19472c9a71 = L.circleMarker(
+                [49.156863, -123.139976],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e87eb7766bff42ddf617dd19472c9a71.bindTooltip(
+                `<div>
+                     
+            <b>Memory Corner 有香 (Richmond)</b><br>
+            Type: Taiwanese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e5172b3428af11bf5a85edc94a8dc69d = L.circleMarker(
+                [49.164062, -123.126351],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e5172b3428af11bf5a85edc94a8dc69d.bindTooltip(
+                `<div>
+                     
+            <b>Richmond Shoo Loong Kan Hotpot</b><br>
+            Type: Hot pot restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6d6895ef96d992ae5c49a0591fa1719f = L.circleMarker(
+                [49.183202, -123.134768],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_6d6895ef96d992ae5c49a0591fa1719f.bindTooltip(
+                `<div>
+                     
+            <b>Yaohan Centre</b><br>
+            Type: Shopping mall<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c4ba54d6b4885a7743b16822b445a68a = L.circleMarker(
+                [49.190268, -123.171948],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_c4ba54d6b4885a7743b16822b445a68a.bindTooltip(
+                `<div>
+                     
+            <b>Max Noodle House</b><br>
+            Type: Cantonese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7444003c2dd6859b0ce4cd850273754c = L.circleMarker(
+                [49.097626, -123.102493],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_7444003c2dd6859b0ce4cd850273754c.bindTooltip(
+                `<div>
+                     
+            <b>Jade Seafood Restaurant</b><br>
+            Type: Chinese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_16eb25dd6183d0ee97eb76a97d9dcde5 = L.circleMarker(
+                [49.315495, -123.064867],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_16eb25dd6183d0ee97eb76a97d9dcde5.bindTooltip(
+                `<div>
+                     
+            <b>Yuu Japanese Tapas</b><br>
+            Type: Japanese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_001ceb660142c8af69ae8fb168744f43 = L.circleMarker(
+                [49.179955, -123.137076],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_001ceb660142c8af69ae8fb168744f43.bindTooltip(
+                `<div>
+                     
+            <b>Parker Place</b><br>
+            Type: Shopping mall<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_abf3f3cfad079ece94a1c880279b191d = L.circleMarker(
+                [49.317605, -122.922433],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_abf3f3cfad079ece94a1c880279b191d.bindTooltip(
+                `<div>
+                     
+            <b>Nonbiri Cafe</b><br>
+            Type: Cafe<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dc83c4fb063f50d42426951f0096da1b = L.circleMarker(
+                [49.206168, -122.890783],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_dc83c4fb063f50d42426951f0096da1b.bindTooltip(
+                `<div>
+                     
+            <b>Hot Spot Buffet 黑牛の家</b><br>
+            Type: Self-service restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9b957f37eea825607a3e00ea73120f4e = L.circleMarker(
+                [49.163316, -123.027629],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9b957f37eea825607a3e00ea73120f4e.bindTooltip(
+                `<div>
+                     
+            <b>Daan Go Cake Lab</b><br>
+            Type: Dessert shop (permanently closed)<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e05536072d9c6b3c5d7576f86fcb0cc6 = L.circleMarker(
+                [49.163316, -123.027629],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e05536072d9c6b3c5d7576f86fcb0cc6.bindTooltip(
+                `<div>
+                     
+            <b>Daan Go Cake Lab</b><br>
+            Type: Dessert shop (permanently closed)<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c42c7802bd43748131ead3a1f090d59a = L.circleMarker(
+                [49.275596, -123.111388],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_c42c7802bd43748131ead3a1f090d59a.bindTooltip(
+                `<div>
+                     
+            <b>Time Out Market Vancouver</b><br>
+            Type: Restaurant/food hall<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5b3251c3af2db2b0a392275d90873b36 = L.circleMarker(
+                [49.182631, -123.152476],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_5b3251c3af2db2b0a392275d90873b36.bindTooltip(
+                `<div>
+                     
+            <b>TAKENAKA Uni Bar</b><br>
+            Type: Japanese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1eda1a6d293431c23b6dc4cd2862c751 = L.circleMarker(
+                [49.321487, -122.960355],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_1eda1a6d293431c23b6dc4cd2862c751.bindTooltip(
+                `<div>
+                     
+            <b>Fufú Café</b><br>
+            Type: Dessert cafe<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9e997122a74c6ff70b8a993190226323 = L.circleMarker(
+                [49.354116, -123.093879],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9e997122a74c6ff70b8a993190226323.bindTooltip(
+                `<div>
+                     
+            <b>Nemesis Coffee GNW</b><br>
+            Type: Cafe<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ba49d02a9ac030502d6a1c9eac8c86fc = L.circleMarker(
+                [49.147655, -123.251066],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_ba49d02a9ac030502d6a1c9eac8c86fc.bindTooltip(
+                `<div>
+                     
+            <b>Toyokan Bowl</b><br>
+            Type: Japanese restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e32de390c7e8b510ab3a07721d1b3841 = L.circleMarker(
+                [49.309575, -123.237985],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e32de390c7e8b510ab3a07721d1b3841.bindTooltip(
+                `<div>
+                     
+            <b>Yume Dining</b><br>
+            Type: Asian fusion restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b3ad7a115f8b9c20d92d01d913ccd531 = L.circleMarker(
+                [49.273528, -123.166693],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b3ad7a115f8b9c20d92d01d913ccd531.bindTooltip(
+                `<div>
+                     
+            <b>Tutto Belle Il Gelato</b><br>
+            Type: Gelato shop (temporarily closed)<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ac916967591055ee0a14b1ed654284ed = L.circleMarker(
+                [49.293007, -122.912181],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_ac916967591055ee0a14b1ed654284ed.bindTooltip(
+                `<div>
+                     
+            <b>K Market International</b><br>
+            Type: Grocery store<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_20d49d77725dbd19e44486055932e1e1 = L.circleMarker(
+                [49.21882, -123.069083],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_20d49d77725dbd19e44486055932e1e1.bindTooltip(
+                `<div>
+                     
+            <b>Little Skewer</b><br>
+            Type: Kebab shop<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7602e5ab9280eda57d1227ac90fa7a3b = L.circleMarker(
+                [49.328156, -122.852121],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_7602e5ab9280eda57d1227ac90fa7a3b.bindTooltip(
+                `<div>
+                     
+            <b>화연 Hwayeon Korean BBQ Restaurant</b><br>
+            Type: Korean BBQ restaurant<br>
+            Region: Metro Vancouver, BC area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c1414d3d06f0ad4fdee92ff3a838de32 = L.circleMarker(
+                [34.179929, -118.263172],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_c1414d3d06f0ad4fdee92ff3a838de32.bindTooltip(
+                `<div>
+                     
+            <b>SORO Coffee</b><br>
+            Type: Coffee shop<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_62eb5f391e4f87505f65d0cf98de8fc0 = L.circleMarker(
+                [34.046357, -118.239452],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_62eb5f391e4f87505f65d0cf98de8fc0.bindTooltip(
+                `<div>
+                     
+            <b>Settecento DTLA</b><br>
+            Type: Italian restaurant<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6746ecc63c6f5642e93c639f334e40b9 = L.circleMarker(
+                [34.123169, -118.17034],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_6746ecc63c6f5642e93c639f334e40b9.bindTooltip(
+                `<div>
+                     
+            <b>Cara Cara</b><br>
+            Type: Californian restaurant<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_026a85f88b4f3d959b92b574b91f9935 = L.circleMarker(
+                [34.077307, -118.188006],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_026a85f88b4f3d959b92b574b91f9935.bindTooltip(
+                `<div>
+                     
+            <b>ÜCA</b><br>
+            Type: Restaurant<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9627a7a636e649a0d8d31d48855f5d8d = L.circleMarker(
+                [34.10212, -118.05902],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9627a7a636e649a0d8d31d48855f5d8d.bindTooltip(
+                `<div>
+                     
+            <b>Bearology Temple City</b><br>
+            Type: Cafe<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_854b000e9ab9f66a384757c4f75f45af = L.circleMarker(
+                [34.0383, -118.256],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_854b000e9ab9f66a384757c4f75f45af.bindTooltip(
+                `<div>
+                     
+            <b>1114 Main St</b><br>
+            Type: Street address<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_80a0279ac5b2f71540e1edb4d84d43bc = L.circleMarker(
+                [34.059592, -118.227511],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_80a0279ac5b2f71540e1edb4d84d43bc.bindTooltip(
+                `<div>
+                     
+            <b>Dunsmoor</b><br>
+            Type: New American restaurant<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fcda465fc4ea97dd6e63ce81ad5cdb70 = L.circleMarker(
+                [34.061891, -118.042399],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_fcda465fc4ea97dd6e63ce81ad5cdb70.bindTooltip(
+                `<div>
+                     
+            <b>Oakobing</b><br>
+            Type: Dessert shop<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aeabe95dac5fc0995e19190d5f0059eb = L.circleMarker(
+                [34.139347, -118.274746],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_aeabe95dac5fc0995e19190d5f0059eb.bindTooltip(
+                `<div>
+                     
+            <b>HOJI Tea Community</b><br>
+            Type: Bubble tea shop<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9b26fc5926a60cef5f7de9a93083bd9a = L.circleMarker(
+                [34.153028, -118.134512],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9b26fc5926a60cef5f7de9a93083bd9a.bindTooltip(
+                `<div>
+                     
+            <b>ALittle Tea - Pasadena</b><br>
+            Type: Bubble tea shop<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ce224088638fd9c26d75b3bbe0f6fc86 = L.circleMarker(
+                [34.062057, -118.227353],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_ce224088638fd9c26d75b3bbe0f6fc86.bindTooltip(
+                `<div>
+                     
+            <b>HaiCha at Dream Mode Cafe</b><br>
+            Type: Bubble tea shop<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e53acce3c2692c3592b19fc2998fba4e = L.circleMarker(
+                [34.149584, -118.142777],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e53acce3c2692c3592b19fc2998fba4e.bindTooltip(
+                `<div>
+                     
+            <b>L'moon Creamery - Pasadena</b><br>
+            Type: Tea house<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0ccecb8b36a742ed297660224b96db46 = L.circleMarker(
+                [33.974836, -118.293626],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_0ccecb8b36a742ed297660224b96db46.bindTooltip(
+                `<div>
+                     
+            <b>Neighbors & Friends Cafe</b><br>
+            Type: Cafe<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b9ea5d0eb45022be0cc9443a7e44a890 = L.circleMarker(
+                [34.096387, -118.180506],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b9ea5d0eb45022be0cc9443a7e44a890.bindTooltip(
+                `<div>
+                     
+            <b>Amara Cafe & Restaurant</b><br>
+            Type: Venezuelan restaurant<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_53d07996718d6ad7f8f452458139f181 = L.circleMarker(
+                [34.043351, -118.007635],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_53d07996718d6ad7f8f452458139f181.bindTooltip(
+                `<div>
+                     
+            <b>Criterion coffee</b><br>
+            Type: Coffee shop<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_139b09dadaafb3140da3660dcb746a16 = L.circleMarker(
+                [33.995132, -118.165395],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_139b09dadaafb3140da3660dcb746a16.bindTooltip(
+                `<div>
+                     
+            <b>Cordova Cafe & Bottleshop</b><br>
+            Type: Cafe<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_529e0dab7e11eea8dac303c2b0393fb0 = L.circleMarker(
+                [34.153775, -118.143606],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_529e0dab7e11eea8dac303c2b0393fb0.bindTooltip(
+                `<div>
+                     
+            <b>Temaki society</b><br>
+            Type: Sushi restaurant<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7f48de70fc0e6aa7e2aea6582a373e04 = L.circleMarker(
+                [34.014543, -117.98232],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_7f48de70fc0e6aa7e2aea6582a373e04.bindTooltip(
+                `<div>
+                     
+            <b>Danbi</b><br>
+            Type: Restaurant<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_111a5fd67612887d78063fe8cf855dfc = L.circleMarker(
+                [34.032609, -118.313913],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_111a5fd67612887d78063fe8cf855dfc.bindTooltip(
+                `<div>
+                     
+            <b>Dha Rae Oak</b><br>
+            Type: Korean restaurant<br>
+            Region: Los Angeles / Pasadena area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_30dac03361294b038410dc00df9db38f = L.circleMarker(
+                [41.898941, -87.645973],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_30dac03361294b038410dc00df9db38f.bindTooltip(
+                `<div>
+                     
+            <b>Borit Gogae</b><br>
+            Type: Korean restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_08fc23c33593a366cc5015dbd0842d7e = L.circleMarker(
+                [41.880469, -87.628935],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_08fc23c33593a366cc5015dbd0842d7e.bindTooltip(
+                `<div>
+                     
+            <b>Elia Chicago</b><br>
+            Type: Turkish restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1db1a6fda5f558f023befa804bed093e = L.circleMarker(
+                [41.917305, -87.688873],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_1db1a6fda5f558f023befa804bed093e.bindTooltip(
+                `<div>
+                     
+            <b>Kapitan</b><br>
+            Type: Malaysian restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_daa50ead87246a63e02104d43d8b39ac = L.circleMarker(
+                [41.855924, -87.735781],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_daa50ead87246a63e02104d43d8b39ac.bindTooltip(
+                `<div>
+                     
+            <b>El Llano Restaurant</b><br>
+            Type: Colombian restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_413fa8dfd7e5c01791aa5d06205830bf = L.circleMarker(
+                [41.90355, -87.599155],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_413fa8dfd7e5c01791aa5d06205830bf.bindTooltip(
+                `<div>
+                     
+            <b>Kim's Home Cooking</b><br>
+            Type: Korean restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fc5888ffcd64ab583f28cc96bcca6e43 = L.circleMarker(
+                [41.896871, -87.628935],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_fc5888ffcd64ab583f28cc96bcca6e43.bindTooltip(
+                `<div>
+                     
+            <b>Uri cafe & baklava</b><br>
+            Type: Espresso bar<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a1fddf72298bfc4a2a2b8adcb8285a66 = L.circleMarker(
+                [41.787468, -87.671238],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_a1fddf72298bfc4a2a2b8adcb8285a66.bindTooltip(
+                `<div>
+                     
+            <b>nubar Cafe</b><br>
+            Type: Cafe<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a673e4b30ee3693cb42b2bb70936d60e = L.circleMarker(
+                [41.769177, -87.631034],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_a673e4b30ee3693cb42b2bb70936d60e.bindTooltip(
+                `<div>
+                     
+            <b>Markellos Baking Company</b><br>
+            Type: Bakery and cake shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6f2962ed23a8c49030f19f136859a5d8 = L.circleMarker(
+                [41.948723, -87.633275],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_6f2962ed23a8c49030f19f136859a5d8.bindTooltip(
+                `<div>
+                     
+            <b>Arwa Yemeni Coffee</b><br>
+            Type: Coffee shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b6ad8e227a30e10566afad28bb54b57d = L.circleMarker(
+                [41.968077, -87.730745],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b6ad8e227a30e10566afad28bb54b57d.bindTooltip(
+                `<div>
+                     
+            <b>WTW (Willis Towers Watson)</b><br>
+            Type: Business management consultant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_528721d8a90d052f605c6117c49d14b6 = L.circleMarker(
+                [41.879589, -87.628513],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_528721d8a90d052f605c6117c49d14b6.bindTooltip(
+                `<div>
+                     
+            <b>Jellycat London Chicago</b><br>
+            Type: Gift shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_607a19943225065339d7613257efc647 = L.circleMarker(
+                [41.891988, -87.551186],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_607a19943225065339d7613257efc647.bindTooltip(
+                `<div>
+                     
+            <b>Barakat Restaurant</b><br>
+            Type: Fine dining restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e861d924dd200ea58b6402a1307d2652 = L.circleMarker(
+                [41.873277, -87.622174],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e861d924dd200ea58b6402a1307d2652.bindTooltip(
+                `<div>
+                     
+            <b>Verzênay Chicago</b><br>
+            Type: Bakery and cake shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_00468a8d486e11e35e0da9fd337a7c9a = L.circleMarker(
+                [41.760625, -87.750223],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_00468a8d486e11e35e0da9fd337a7c9a.bindTooltip(
+                `<div>
+                     
+            <b>illy Caffè</b><br>
+            Type: Coffee shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9408f9cc3812cd879a1c2d37979d1f7a = L.circleMarker(
+                [41.969507, -87.86544],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9408f9cc3812cd879a1c2d37979d1f7a.bindTooltip(
+                `<div>
+                     
+            <b>Yuzu Sushi & Robata Grill</b><br>
+            Type: Sushi restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e187adbfaccc5bc074a48accd96f35bc = L.circleMarker(
+                [41.890756, -87.5684],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_e187adbfaccc5bc074a48accd96f35bc.bindTooltip(
+                `<div>
+                     
+            <b>Destination 35 ديستينيشن</b><br>
+            Type: Coffee shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_81242b931520243229e4d10e228a8ff4 = L.circleMarker(
+                [42.005599, -87.782921],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_81242b931520243229e4d10e228a8ff4.bindTooltip(
+                `<div>
+                     
+            <b>Farmer's Milk Cafe & Bakery</b><br>
+            Type: Bakery and cake shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a77fa7b8c3b392582e24a5acc357a9b5 = L.circleMarker(
+                [41.959734, -87.768661],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_a77fa7b8c3b392582e24a5acc357a9b5.bindTooltip(
+                `<div>
+                     
+            <b>Discourse Coffee</b><br>
+            Type: Coffee shop (permanently closed)<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3bc4e2a4a3c8cec678befc0ea18f1cfb = L.circleMarker(
+                [41.851724, -87.661697],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_3bc4e2a4a3c8cec678befc0ea18f1cfb.bindTooltip(
+                `<div>
+                     
+            <b>Publican Quality Bread</b><br>
+            Type: Bakery and cake shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ba00ec7e430e1cee59e1a93c735b70ad = L.circleMarker(
+                [41.820988, -87.687297],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_ba00ec7e430e1cee59e1a93c735b70ad.bindTooltip(
+                `<div>
+                     
+            <b>One More Sushi Express</b><br>
+            Type: Sushi restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1f9db3197fa0d2ddc335bbceaf4ddd0a = L.circleMarker(
+                [41.984386, -87.767859],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_1f9db3197fa0d2ddc335bbceaf4ddd0a.bindTooltip(
+                `<div>
+                     
+            <b>Gathers Tea Bar</b><br>
+            Type: Cafe<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3f24f818794aa1f1e3791fb0e67a217f = L.circleMarker(
+                [41.965045, -87.575958],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_3f24f818794aa1f1e3791fb0e67a217f.bindTooltip(
+                `<div>
+                     
+            <b>The Matcha Bar @Kurimu</b><br>
+            Type: Cafe<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5c0cc41dead1ae8c601da3f5ef06e5b5 = L.circleMarker(
+                [41.92106, -87.731966],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_5c0cc41dead1ae8c601da3f5ef06e5b5.bindTooltip(
+                `<div>
+                     
+            <b>Pequeno Mercat Coffee Shop</b><br>
+            Type: Coffee shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_012086d14e084644a2fab642ebb4da00 = L.circleMarker(
+                [41.901526, -87.627698],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_012086d14e084644a2fab642ebb4da00.bindTooltip(
+                `<div>
+                     
+            <b>Aglaïa Coffee & Tea Co.</b><br>
+            Type: Cafe<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fdd13f7788bb51341a9286fc6bccfb2f = L.circleMarker(
+                [41.814283, -87.755898],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_fdd13f7788bb51341a9286fc6bccfb2f.bindTooltip(
+                `<div>
+                     
+            <b>Windmill Island Gardens</b><br>
+            Type: Garden/attraction (temporarily closed)<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_12df6646f38550bafdbc34ead5470fb6 = L.circleMarker(
+                [41.944726, -87.621848],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_12df6646f38550bafdbc34ead5470fb6.bindTooltip(
+                `<div>
+                     
+            <b>Panaderia Santa Maria Bakery #2</b><br>
+            Type: Bakery and cake shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_20ec26dbbe6b4bdb9512223380632610 = L.circleMarker(
+                [41.795954, -87.720766],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_20ec26dbbe6b4bdb9512223380632610.bindTooltip(
+                `<div>
+                     
+            <b>Qamaria Yemeni Coffee</b><br>
+            Type: Coffee shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9ef57ff9d3955a5c8b7d3dee7f0dc6b4 = L.circleMarker(
+                [41.977517, -87.702701],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9ef57ff9d3955a5c8b7d3dee7f0dc6b4.bindTooltip(
+                `<div>
+                     
+            <b>Chazui Tea Tower</b><br>
+            Type: Coffee/tea shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_358b74a500f2b25c0bbd32dd8e2a5874 = L.circleMarker(
+                [42.002163, -87.664598],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_358b74a500f2b25c0bbd32dd8e2a5874.bindTooltip(
+                `<div>
+                     
+            <b>Amorino</b><br>
+            Type: Ice cream shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_068b5e6361b7cfc65411f313580c771e = L.circleMarker(
+                [41.94415, -87.726805],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_068b5e6361b7cfc65411f313580c771e.bindTooltip(
+                `<div>
+                     
+            <b>Fogo de Chão Brazilian Steakhouse</b><br>
+            Type: Brazilian steakhouse<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_929d7c52aabaed316528c4eb57867b40 = L.circleMarker(
+                [41.881168, -87.628026],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_929d7c52aabaed316528c4eb57867b40.bindTooltip(
+                `<div>
+                     
+            <b>Vietfive Coffee - Chicago</b><br>
+            Type: Coffee shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9190d97be63ad0a8335f9fcba8d59e2c = L.circleMarker(
+                [41.975511, -87.588469],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9190d97be63ad0a8335f9fcba8d59e2c.bindTooltip(
+                `<div>
+                     
+            <b>Gibsons Italia</b><br>
+            Type: Italian restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9f5ee5e6a0ffb95b5781a6c37c7180d5 = L.circleMarker(
+                [42.015094, -87.634698],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9f5ee5e6a0ffb95b5781a6c37c7180d5.bindTooltip(
+                `<div>
+                     
+            <b>Jujin Broadway Breakfast & Coffee</b><br>
+            Type: Cafe<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_64815d3f24a3f1dc120759371c88f899 = L.circleMarker(
+                [41.822027, -87.615695],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_64815d3f24a3f1dc120759371c88f899.bindTooltip(
+                `<div>
+                     
+            <b>Caché 310</b><br>
+            Type: Cocktail bar<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b31d2561fae4d24aae48aa299d66aea1 = L.circleMarker(
+                [41.813372, -87.681759],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b31d2561fae4d24aae48aa299d66aea1.bindTooltip(
+                `<div>
+                     
+            <b>Gaijin</b><br>
+            Type: Okonomiyaki restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_20b2ca077e0f602802ad6785dc4347f6 = L.circleMarker(
+                [41.802789, -87.605687],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_20b2ca077e0f602802ad6785dc4347f6.bindTooltip(
+                `<div>
+                     
+            <b>Postcard</b><br>
+            Type: Cafe<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c723d9eecdbc54546f541cf96e37d303 = L.circleMarker(
+                [41.84768, -87.801887],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_c723d9eecdbc54546f541cf96e37d303.bindTooltip(
+                `<div>
+                     
+            <b>La Colombe Coffee Workshop</b><br>
+            Type: Espresso bar<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fe758ed14481ac1217345b8fdbfa956b = L.circleMarker(
+                [41.797, -87.820358],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_fe758ed14481ac1217345b8fdbfa956b.bindTooltip(
+                `<div>
+                     
+            <b>Koi Noodles</b><br>
+            Type: Chinese restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6d1fbe427793bf5cc2b99091c4c1d9b0 = L.circleMarker(
+                [41.867627, -87.728585],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_6d1fbe427793bf5cc2b99091c4c1d9b0.bindTooltip(
+                `<div>
+                     
+            <b>Oni Maki</b><br>
+            Type: Japanese restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_87e7a986df06e6cda99c35f97e204ac9 = L.circleMarker(
+                [41.931723, -87.569729],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_87e7a986df06e6cda99c35f97e204ac9.bindTooltip(
+                `<div>
+                     
+            <b>Highlander House Restaurant & Bar</b><br>
+            Type: Polish restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b51657559f3a06eaa994a189e6b0f070 = L.circleMarker(
+                [41.838185, -87.627648],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b51657559f3a06eaa994a189e6b0f070.bindTooltip(
+                `<div>
+                     
+            <b>Zmzm Sweets</b><br>
+            Type: Dessert shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bcad274c5bccf0cd030fd4bf4a3ca96f = L.circleMarker(
+                [41.883918, -87.620608],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_bcad274c5bccf0cd030fd4bf4a3ca96f.bindTooltip(
+                `<div>
+                     
+            <b>Matchbox Bar</b><br>
+            Type: Bar<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2acdbc481871767e0ffab460b44d0a12 = L.circleMarker(
+                [41.895102, -87.554062],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_2acdbc481871767e0ffab460b44d0a12.bindTooltip(
+                `<div>
+                     
+            <b>Good Ambler</b><br>
+            Type: Bakery and cake shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2b6f0d9f4e7266a7ec4950c92f0af69d = L.circleMarker(
+                [41.896523, -87.694543],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_2b6f0d9f4e7266a7ec4950c92f0af69d.bindTooltip(
+                `<div>
+                     
+            <b>Momotaro</b><br>
+            Type: Japanese restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5009cd1b5e8e7051b26e945b2051c94b = L.circleMarker(
+                [41.906732, -87.808695],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_5009cd1b5e8e7051b26e945b2051c94b.bindTooltip(
+                `<div>
+                     
+            <b>Stringria Coffee and Tea Bar</b><br>
+            Type: Coffee store<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a5f2829e94cde22f60f1c30bdb4043b5 = L.circleMarker(
+                [41.855462, -87.632436],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_a5f2829e94cde22f60f1c30bdb4043b5.bindTooltip(
+                `<div>
+                     
+            <b>Lawrence Fish Market Chinatown</b><br>
+            Type: Japanese/seafood restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5927d4a83d5d945e02630501d22aef53 = L.circleMarker(
+                [41.938696, -87.616358],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_5927d4a83d5d945e02630501d22aef53.bindTooltip(
+                `<div>
+                     
+            <b>Scafuri Bakery</b><br>
+            Type: Bakery and cake shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_17ea87a0994c6e71214b11c49eeeb320 = L.circleMarker(
+                [41.926262, -87.7921],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_17ea87a0994c6e71214b11c49eeeb320.bindTooltip(
+                `<div>
+                     
+            <b>Slightly Toasted</b><br>
+            Type: Gastropub<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6552fd5858dd18d4fcd0a6a64daa4267 = L.circleMarker(
+                [41.926632, -87.603604],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_6552fd5858dd18d4fcd0a6a64daa4267.bindTooltip(
+                `<div>
+                     
+            <b>Maharaj Indian Grill</b><br>
+            Type: Indian restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9ff747e80c102410629b0de6532a2537 = L.circleMarker(
+                [41.877989, -87.621839],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_9ff747e80c102410629b0de6532a2537.bindTooltip(
+                `<div>
+                     
+            <b>Brü Chicago</b><br>
+            Type: Coffee shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b98793c28260a5d00e8502896b62bce3 = L.circleMarker(
+                [41.777489, -87.590727],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b98793c28260a5d00e8502896b62bce3.bindTooltip(
+                `<div>
+                     
+            <b>River Roux</b><br>
+            Type: Bistro<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0a0817ba7a987bd605dfdf925d63e10c = L.circleMarker(
+                [41.824923, -87.614104],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_0a0817ba7a987bd605dfdf925d63e10c.bindTooltip(
+                `<div>
+                     
+            <b>The Foyer Café</b><br>
+            Type: Restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d49d77eeddabea0bfa24d419688b29eb = L.circleMarker(
+                [41.880077, -87.630983],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_d49d77eeddabea0bfa24d419688b29eb.bindTooltip(
+                `<div>
+                     
+            <b>Chicago French Market</b><br>
+            Type: Food court<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_971f73bb3eb7d6531283d8e241010bef = L.circleMarker(
+                [41.888505, -87.678333],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_971f73bb3eb7d6531283d8e241010bef.bindTooltip(
+                `<div>
+                     
+            <b>Chubby Skewers Authentic Chinese BBQ </b><br>
+            Type:  Chicago<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3f54a9e1ec6cca94eb80272853758410 = L.circleMarker(
+                [41.953377, -87.765978],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_3f54a9e1ec6cca94eb80272853758410.bindTooltip(
+                `<div>
+                     
+            <b>Sterling Food Hall</b><br>
+            Type: Food court<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3f8f4c9569b6af7346126480e0a7a58c = L.circleMarker(
+                [41.87699, -87.71618],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_3f8f4c9569b6af7346126480e0a7a58c.bindTooltip(
+                `<div>
+                     
+            <b>Qamaria Yemeni Coffee Co.</b><br>
+            Type: Coffee shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b67845c63a3d07b5ae5d6ac1e4643c0a = L.circleMarker(
+                [41.95321, -87.641233],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_b67845c63a3d07b5ae5d6ac1e4643c0a.bindTooltip(
+                `<div>
+                     
+            <b>Cafe Beograd</b><br>
+            Type: Serbian restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f7cd2a14aa81a0787f2119140e4b45b2 = L.circleMarker(
+                [41.902208, -87.8538],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_f7cd2a14aa81a0787f2119140e4b45b2.bindTooltip(
+                `<div>
+                     
+            <b>Arzan Cafe</b><br>
+            Type: Halal restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_69f79c8c86c25cb21d1d48c439408a61 = L.circleMarker(
+                [42.024826, -87.800807],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_69f79c8c86c25cb21d1d48c439408a61.bindTooltip(
+                `<div>
+                     
+            <b>Metro Market</b><br>
+            Type: Indian grocery store<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_21ee5c6a9e42e1e6ac0eae47f90432fe = L.circleMarker(
+                [41.916357, -87.703246],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_21ee5c6a9e42e1e6ac0eae47f90432fe.bindTooltip(
+                `<div>
+                     
+            <b>Mitsuwa Marketplace</b><br>
+            Type: Japanese grocery store<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83be61e549845d2277bb17cfadee18e4 = L.circleMarker(
+                [41.9731, -87.6552],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_83be61e549845d2277bb17cfadee18e4.bindTooltip(
+                `<div>
+                     
+            <b>1028 W Argyle St</b><br>
+            Type: Street address<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_55003ba6841bd9a267f60adbff5cc48f = L.circleMarker(
+                [41.899777, -87.649994],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_55003ba6841bd9a267f60adbff5cc48f.bindTooltip(
+                `<div>
+                     
+            <b>BellyBowl Kitchen & Lounge (Halsted)</b><br>
+            Type: Asian restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_49c62d3afea4957f2c1e00ac7133c304 = L.circleMarker(
+                [41.834268, -87.527253],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_49c62d3afea4957f2c1e00ac7133c304.bindTooltip(
+                `<div>
+                     
+            <b>Kusina ni Mars</b><br>
+            Type: Restaurant (temporarily closed)<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c0da5c0e62afb830b228cd417d61bd58 = L.circleMarker(
+                [41.9529, -87.627502],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_c0da5c0e62afb830b228cd417d61bd58.bindTooltip(
+                `<div>
+                     
+            <b>Peking Mandarin Restaurant </b><br>
+            Type:  Chinese<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aa4dfd70768904f48f6c2ed4049215c0 = L.circleMarker(
+                [41.891234, -87.586796],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_aa4dfd70768904f48f6c2ed4049215c0.bindTooltip(
+                `<div>
+                     
+            <b>Four Seasons Dumpling</b><br>
+            Type: Dumpling restaurant<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4375dadcc77aedf31c196752f39eae40 = L.circleMarker(
+                [41.864973, -87.686687],
+                {"bubblingMouseEvents": true, "color": "#E45756", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#E45756", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 1}
+            ).addTo(map_c8c5c7f194316af39e59044d8c1c455c);
+        
+    
+            circle_marker_4375dadcc77aedf31c196752f39eae40.bindTooltip(
+                `<div>
+                     
+            <b>Sweet Bean</b><br>
+            Type: Bakery and cake shop<br>
+            Region: Chicago area
+            
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
