@@ -139,7 +139,7 @@ st.markdown(
         color: #FFFFFF;
         margin-bottom: 0;
     ">
-        Saved <span style="color:#C1FD3B;">Locations</span>
+        Top <span style="color:#C1FD3B;"> Food Spots </span>
     </h1>
 
     <p style="
