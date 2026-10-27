@@ -9,6 +9,6 @@ borderColor = "#30363D"
 [theme.sidebar]
 primaryColor = "#C1FD3B"
 backgroundColor = "#161B22"
-secondaryBackgroundColor = "#20262E"
+secondaryBackgroundColor = "#30363D"
 textColor = "#F4F7FA"
-borderColor = "#30363D"
+borderColor = "#484F58"
