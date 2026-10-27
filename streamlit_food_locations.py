@@ -48,7 +48,6 @@ USER_LOCATION_COLUMNS = [
     "Added By User"
 ]
 
-
 # ---------------------------------------------------------
 # LOAD DATA
 # ---------------------------------------------------------
@@ -83,7 +82,7 @@ def load_user_locations():
     location is successfully added.
     """
 
-    if os.path.exists(USER_LOCATIONS_FILE):
+    if USER_LOCATIONS_FILE.exists():
         additions = pd.read_csv(USER_LOCATIONS_FILE)
 
         # Ensure all expected columns exist
@@ -679,8 +678,8 @@ if not st.session_state.user_locations.empty:
                 columns=USER_LOCATION_COLUMNS
             )
 
-            if os.path.exists(USER_LOCATIONS_FILE):
-                os.remove(USER_LOCATIONS_FILE)
+            if USER_LOCATIONS_FILE.exists():
+                USER_LOCATIONS_FILE.unlink()
 
             # Clear the recently added point used for centering
             st.session_state.pop(
