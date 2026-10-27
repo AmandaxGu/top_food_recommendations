@@ -12,8 +12,281 @@ st.set_page_config(
     page_title="My Food Spots",
     layout="wide"
 )
+st.markdown(
+    """
+    <style>
+    :root {
+        --bg: #0E1117;
+        --panel: #161B22;
+        --field: #20262E;
+        --border: #30363D;
+        --text: #F4F7FA;
+        --muted: #C5CDD6;
+        --accent: #C1FD3B;
+        --accent-hover: #A9E92F;
+    }
 
-st.title("My Food Spots")
+    /* Sidebar open / close arrows */
+    [data-testid="stSidebarCollapseButton"] button,
+    [data-testid="stSidebarCollapsedControl"] button {
+        color: #F4F7FA !important;
+        background-color: transparent !important;
+    }
+
+    /* Arrow icons */
+    [data-testid="stSidebarCollapseButton"] svg,
+    [data-testid="stSidebarCollapsedControl"] svg {
+        color: #F4F7FA !important;
+        fill: #F4F7FA !important;
+        stroke: #F4F7FA !important;
+    }
+
+    /* Lime hover */
+    [data-testid="stSidebarCollapseButton"] button:hover svg,
+    [data-testid="stSidebarCollapsedControl"] button:hover svg {
+        color: #C1FD3B !important;
+        fill: #C1FD3B !important;
+        stroke: #C1FD3B !important;
+    }
+
+    /* App and top banner */
+    html, body, .stApp,
+    [data-testid="stAppViewContainer"],
+    [data-testid="stMain"],
+    [data-testid="stMainBlockContainer"],
+    [data-testid="stHeader"],
+    [data-testid="stToolbar"] {
+        background: var(--bg) !important;
+        color: var(--text) !important;
+    }
+
+    [data-testid="stDecoration"] {
+        display: none !important;
+    }
+
+    [data-testid="stHeader"] button,
+    [data-testid="stHeader"] svg {
+        color: var(--muted) !important;
+        fill: var(--muted) !important;
+    }
+
+    /* Sidebar */
+    [data-testid="stSidebar"],
+    [data-testid="stSidebarContent"] {
+        background: var(--panel) !important;
+        color: var(--text) !important;
+    }
+
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] span {
+        color: var(--text) !important;
+    }
+
+    [data-testid="stSidebar"] small,
+    [data-testid="stCaptionContainer"] {
+        color: var(--muted) !important;
+    }
+
+    /* Sidebar multiselect */
+    [data-testid="stSidebar"] [data-baseweb="select"] > div {
+        background: var(--field) !important;
+        border-color: var(--border) !important;
+        color: var(--text) !important;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="select"] > div:focus-within {
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 0 1px var(--accent) !important;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="select"] input {
+        color: var(--text) !important;
+        caret-color: var(--accent) !important;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="tag"] {
+        background: var(--accent) !important;
+    }
+
+    [data-testid="stSidebar"] [data-baseweb="tag"] span,
+    [data-testid="stSidebar"] [data-baseweb="tag"] svg {
+        color: var(--bg) !important;
+        fill: var(--bg) !important;
+    }
+
+    /* Sidebar dropdown */
+    [data-baseweb="popover"],
+    [data-baseweb="menu"],
+    [role="listbox"],
+    [role="option"] {
+        background: var(--panel) !important;
+        color: var(--text) !important;
+    }
+
+    [role="option"]:hover,
+    [role="option"][aria-selected="true"] {
+        background: #29331E !important;
+        color: var(--accent) !important;
+    }
+
+    /* Sidebar checkboxes: replace red with lime */
+    [data-testid="stSidebar"]
+    [data-testid="stCheckbox"]
+    div[role="checkbox"] {
+        border-color: var(--accent) !important;
+    }
+
+    [data-testid="stSidebar"]
+    [data-testid="stCheckbox"]
+    div[role="checkbox"][aria-checked="true"] {
+        background: var(--accent) !important;
+        border-color: var(--accent) !important;
+    }
+
+    [data-testid="stSidebar"]
+    [data-testid="stCheckbox"]
+    div[role="checkbox"][aria-checked="true"] svg {
+        color: var(--bg) !important;
+        fill: var(--bg) !important;
+    }
+
+    /* Inputs */
+    [data-testid="stTextInput"] input,
+    [data-testid="stNumberInput"] input {
+        background: var(--field) !important;
+        color: var(--text) !important;
+        border-color: var(--border) !important;
+        caret-color: var(--accent) !important;
+    }
+
+    [data-testid="stTextInput"] input:focus,
+    [data-testid="stNumberInput"] input:focus {
+        border-color: var(--accent) !important;
+        box-shadow: 0 0 0 1px var(--accent) !important;
+    }
+
+    input::placeholder {
+        color: var(--muted) !important;
+        opacity: 1 !important;
+    }
+
+    /* Buttons */
+    button[kind="primary"],
+    [data-testid="stFormSubmitButton"] button {
+        background: var(--accent) !important;
+        color: var(--bg) !important;
+        border-color: var(--accent) !important;
+        font-weight: 700 !important;
+    }
+
+    button[kind="primary"]:hover,
+    [data-testid="stFormSubmitButton"] button:hover {
+        background: var(--accent-hover) !important;
+        border-color: var(--accent-hover) !important;
+    }
+
+    button[kind="secondary"],
+    [data-testid="stDownloadButton"] button {
+        background: var(--panel) !important;
+        color: var(--text) !important;
+        border: 1px solid var(--accent) !important;
+    }
+
+    /* Expanders and alerts */
+    [data-testid="stExpander"],
+    [data-testid="stAlert"] {
+        background: var(--panel) !important;
+        color: var(--text) !important;
+        border: 1px solid var(--border) !important;
+        border-radius: 8px !important;
+    }
+
+    [data-testid="stExpander"] summary,
+    [data-testid="stExpander"] summary p {
+        color: var(--text) !important;
+    }
+
+    /* Global accents */
+    a {
+        color: var(--accent) !important;
+    }
+
+    *:focus-visible {
+        outline-color: var(--accent) !important;
+    }
+
+    ::selection {
+        background: var(--accent);
+        color: var(--bg);
+    }
+    
+    /* Expander titles: prevent white hover background */
+    [data-testid="stExpander"] summary {
+        background-color: var(--panel) !important;
+        color: var(--text) !important;
+        border-radius: 8px !important;
+    }
+
+    /* Keep header dark and change title to lime on hover */
+    [data-testid="stExpander"] summary:hover {
+        background-color: #20262E !important;
+        color: var(--accent) !important;
+    }
+
+    /* Expander title text */
+    [data-testid="stExpander"] summary p,
+    [data-testid="stExpander"] summary span {
+        color: var(--text) !important;
+    }
+
+    /* Title text on hover */
+    [data-testid="stExpander"] summary:hover p,
+    [data-testid="stExpander"] summary:hover span {
+        color: var(--accent) !important;
+    }
+
+    /* Expander arrow */
+    [data-testid="stExpander"] summary svg {
+        color: var(--text) !important;
+        fill: var(--text) !important;
+        stroke: var(--text) !important;
+    }
+
+    /* Expander arrow on hover */
+    [data-testid="stExpander"] summary:hover svg {
+        color: var(--accent) !important;
+        fill: var(--accent) !important;
+        stroke: var(--accent) !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <h1 style="
+        color: #FFFFFF;
+        margin-bottom: 0;
+    ">
+        Saved <span style="color:#C1FD3B;">Locations</span>
+    </h1>
+
+    <p style="
+        color: #AEB6C2;
+        margin-top: 4px;
+        margin-bottom: 25px;
+        font-size: 16px;
+    ">
+        Explore, filter, and add your favorite places.
+    </p>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # Display a success message after Streamlit reruns
@@ -136,7 +409,7 @@ with st.expander(
 
         place_name = st.text_input(
             "Place name",
-            placeholder="Example: Amanda's Coffee Shop"
+            placeholder="Example: Epic Matcha and Coffee Shop"
         )
 
         place_type = st.text_input(
@@ -523,7 +796,7 @@ original_layer = pdk.Layer(
     "ScatterplotLayer",
     data=original_locations,
     get_position="[Longitude, Latitude]",
-    get_fill_color=[228, 87, 86, 200],
+    get_fill_color=[193, 253, 59, 220],
     get_line_color=[255, 255, 255],
     get_radius=8,
     radius_min_pixels=5,
@@ -533,7 +806,7 @@ original_layer = pdk.Layer(
     filled=True,
     pickable=True,
     auto_highlight=True,
-    highlight_color=[255, 200, 0, 255]
+    highlight_color=[255, 255, 255, 255]
 )
 
 user_layer = pdk.Layer(
@@ -550,7 +823,7 @@ user_layer = pdk.Layer(
     filled=True,
     pickable=True,
     auto_highlight=True,
-    highlight_color=[255, 200, 0, 255]
+    highlight_color=[255, 255, 255, 255]
 )
 
 
@@ -575,20 +848,32 @@ view_state = pdk.ViewState(
 
 tooltip = {
     "html": """
-        <b>{Location Name}</b><br/>
-        <b>Type:</b> {Brief Description}<br/>
-        <b>Region:</b> {Region Hint}<br/>
-        <b>Source:</b> {Location Source}<br/>
-        <b>Latitude:</b> {Latitude}<br/>
-        <b>Longitude:</b> {Longitude}
+        <div style="font-family: Arial, sans-serif;">
+            <div style="
+                color: #C1FD3B;
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 6px;
+            ">
+                {Location Name}
+            </div>
+
+            <b>Type:</b> {Brief Description}<br/>
+            <b>Region:</b> {Region Hint}<br/>
+            <b>Source:</b> {Location Source}<br/>
+            <b>Latitude:</b> {Latitude}<br/>
+            <b>Longitude:</b> {Longitude}
+        </div>
     """,
     "style": {
-        "backgroundColor": "#222222",
-        "color": "white",
-        "fontSize": "14px"
+        "backgroundColor": "#161B22",
+        "color": "#FFFFFF",
+        "fontSize": "13px",
+        "border": "1px solid #C1FD3B",
+        "borderRadius": "8px",
+        "padding": "10px"
     }
 }
-
 
 # ---------------------------------------------------------
 # DISPLAY MAP
