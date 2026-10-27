@@ -170,7 +170,7 @@ APP_FOLDER = Path(__file__).resolve().parent
 # Data subfolder visible in the GitHub repository
 DATA_FOLDER = APP_FOLDER / "data"
 
-BASE_FILE = DATA_FOLDER / "food_loc.xlsx"
+BASE_FILE = DATA_FOLDER / "food_loc_exact.xlsx"
 USER_LOCATIONS_FILE = DATA_FOLDER / "user_added_locations.csv"
 
 # ---------------------------------------------------------
