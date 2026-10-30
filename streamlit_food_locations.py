@@ -328,20 +328,20 @@ def save_user_location(location):
         .execute()
     )
 
-
-def delete_all_user_locations():
+def delete_selected_user_locations(location_ids):
     """
-    Delete all user-added locations from Supabase.
-
-    Every row in this table is a user-added location,
-    so the filter targets added_by_user = True.
+    Permanently delete selected locations from Supabase
+    using their unique database IDs.
     """
+
+    if not location_ids:
+        return
 
     (
         get_supabase()
         .table("food_locations")
         .delete()
-        .eq("added_by_user", True)
+        .in_("id", location_ids)
         .execute()
     )
 
@@ -1390,106 +1390,139 @@ if not st.session_state.user_locations.empty:
         "Manage user-added locations"
     ):
 
-        display_columns = [
-            "Location Name",
-            "Brief Description",
-            "Region Hint",
-            "Latitude",
-            "Longitude"
-        ]
-
-        st.dataframe(
-            st.session_state.user_locations[
-                display_columns
-            ],
-            width="stretch",
-            hide_index=True
-        )
-
-        # -------------------------------------------------
-        # SELECTIVE DELETE
-        # -------------------------------------------------
-
-        st.markdown("### Delete selected locations")
-
         st.caption(
-            "Select one or more locations to permanently "
-            "remove from the map."
+            "Check the locations you want to remove, then "
+            "select the delete button above the table."
         )
 
+        # Create the editable management table.
         management_df = (
             st.session_state.user_locations.copy()
         )
 
-        # Create unique, readable labels.
-        management_df["Delete Label"] = (
-            management_df["Location Name"]
-            .fillna("Unnamed location")
-            .astype(str)
-            + " — "
-            + management_df["Region Hint"]
-            .fillna("Unknown region")
-            .astype(str)
-            + " ("
-            + management_df["Latitude"]
-            .round(5)
-            .astype(str)
-            + ", "
-            + management_df["Longitude"]
-            .round(5)
-            .astype(str)
-            + ")"
+        # Add a boolean checkbox column.
+        management_df.insert(
+            0,
+            "Select",
+            False
         )
 
-        selected_for_deletion = st.multiselect(
-            "Locations to delete",
-            options=management_df[
-                "Delete Label"
-            ].tolist(),
-            placeholder="Select locations...",
-            key="locations_to_delete"
-        )
+        # -------------------------------------------------
+        # CHECKBOX TABLE AND DELETE BUTTON
+        # -------------------------------------------------
 
-        if selected_for_deletion:
+        with st.form(
+            key="delete_selected_locations_form"
+        ):
 
-            selected_rows = management_df[
-                management_df[
-                    "Delete Label"
-                ].isin(selected_for_deletion)
+            # The submit button appears at the top of
+            # the table as the delete control.
+            delete_selected_submitted = (
+                st.form_submit_button(
+                    "🗑️ Delete selected",
+                    type="secondary"
+                )
+            )
+
+            edited_management_df = st.data_editor(
+                management_df,
+                width="stretch",
+                hide_index=True,
+                num_rows="fixed",
+                column_order=[
+                    "Select",
+                    "Location Name",
+                    "Brief Description",
+                    "Region Hint",
+                    "Latitude",
+                    "Longitude"
+                ],
+                column_config={
+                    "Select": (
+                        st.column_config.CheckboxColumn(
+                            "Select",
+                            help=(
+                                "Check locations to delete."
+                            ),
+                            default=False,
+                            width="small",
+                            pinned=True
+                        )
+                    ),
+                    "Location Name": (
+                        st.column_config.TextColumn(
+                            "Location Name",
+                            width="medium"
+                        )
+                    ),
+                    "Brief Description": (
+                        st.column_config.TextColumn(
+                            "Type",
+                            width="medium"
+                        )
+                    ),
+                    "Region Hint": (
+                        st.column_config.TextColumn(
+                            "Region",
+                            width="medium"
+                        )
+                    ),
+                    "Latitude": (
+                        st.column_config.NumberColumn(
+                            "Latitude",
+                            format="%.6f"
+                        )
+                    ),
+                    "Longitude": (
+                        st.column_config.NumberColumn(
+                            "Longitude",
+                            format="%.6f"
+                        )
+                    )
+                },
+                disabled=[
+                    "Location Name",
+                    "Brief Description",
+                    "Region Hint",
+                    "Latitude",
+                    "Longitude"
+                ],
+                key="user_location_management_editor"
+            )
+
+        # -------------------------------------------------
+        # PROCESS SELECTIVE DELETE
+        # -------------------------------------------------
+
+        if delete_selected_submitted:
+
+            selected_rows = edited_management_df[
+                edited_management_df["Select"] == True
             ].copy()
 
-            st.caption(
-                f"{len(selected_rows):,} "
-                "location(s) selected."
-            )
+            if selected_rows.empty:
 
-            confirm_selected_delete = st.checkbox(
-                "I understand the selected locations "
-                "will be permanently deleted.",
-                key="confirm_selected_delete"
-            )
+                st.warning(
+                    "Check at least one location before "
+                    "selecting Delete."
+                )
 
-            if st.button(
-                "Delete selected locations",
-                type="secondary",
-                disabled=not confirm_selected_delete
-            ):
+            else:
 
                 try:
 
                     location_ids = (
-                        selected_rows[
-                            "Supabase ID"
-                        ]
+                        selected_rows["Supabase ID"]
                         .dropna()
                         .astype(int)
                         .tolist()
                     )
 
                     if not location_ids:
+
                         st.error(
-                            "No valid Supabase IDs were found "
-                            "for the selected locations."
+                            "The selected locations do not "
+                            "have valid Supabase IDs."
                         )
 
                     else:
@@ -1498,12 +1531,12 @@ if not st.session_state.user_locations.empty:
                             location_ids
                         )
 
-                        # Reload the remaining locations
-                        # directly from Supabase.
+                        # Reload the remaining rows directly
+                        # from Supabase.
                         refresh_user_locations()
 
-                        # Remove previous map-centering state,
-                        # because that point may have been deleted.
+                        # Clear the previous map center because
+                        # the centered point may have been deleted.
                         st.session_state.pop(
                             "new_location_latitude",
                             None
@@ -1514,21 +1547,21 @@ if not st.session_state.user_locations.empty:
                             None
                         )
 
-                        # Clear selection state before rerunning.
+                        # Reset the table editor so previously
+                        # selected checkboxes do not remain.
                         st.session_state.pop(
-                            "locations_to_delete",
+                            "user_location_management_editor",
                             None
                         )
 
-                        st.session_state.pop(
-                            "confirm_selected_delete",
-                            None
+                        deleted_count = len(
+                            location_ids
                         )
 
                         st.session_state[
                             "location_added_message"
                         ] = (
-                            f"{len(location_ids):,} "
+                            f"{deleted_count:,} selected "
                             "location(s) were deleted."
                         )
 
@@ -1549,7 +1582,7 @@ if not st.session_state.user_locations.empty:
         st.divider()
 
         # -------------------------------------------------
-        # DOWNLOAD
+        # DOWNLOAD USER-ADDED LOCATIONS
         # -------------------------------------------------
 
         downloadable_data = (
@@ -1575,56 +1608,3 @@ if not st.session_state.user_locations.empty:
         )
 
         st.divider()
-
-        # -------------------------------------------------
-        # DELETE ALL
-        # -------------------------------------------------
-
-        st.markdown("### Delete all locations")
-
-        confirm_delete = st.checkbox(
-            "I understand this will permanently "
-            "delete all user-added locations.",
-            key="confirm_delete_all"
-        )
-
-        if st.button(
-            "Delete all user-added locations",
-            type="secondary",
-            disabled=not confirm_delete
-        ):
-
-            try:
-
-                delete_all_user_locations()
-
-                refresh_user_locations()
-
-                st.session_state.pop(
-                    "new_location_latitude",
-                    None
-                )
-
-                st.session_state.pop(
-                    "new_location_longitude",
-                    None
-                )
-
-                st.session_state.location_added_message = (
-                    "All user-added locations "
-                    "were deleted."
-                )
-
-                st.rerun()
-
-            except Exception as error:
-
-                st.error(
-                    "The saved locations could "
-                    "not be deleted."
-                )
-
-                with st.expander(
-                    "Technical details"
-                ):
-                    st.code(str(error))
