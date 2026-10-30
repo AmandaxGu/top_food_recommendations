@@ -9,6 +9,22 @@ import streamlit as st
 from supabase import create_client
 
 
+
+url = st.secrets["supabase"]["url"]
+key = st.secrets["supabase"]["key"]
+
+supabase = create_client(url, key)
+
+response = (
+    supabase
+    .table("food_locations")
+    .select("*")
+    .execute()
+)
+
+print(response.data)
+
+
 # ---------------------------------------------------------
 # PAGE CONFIGURATION
 # ---------------------------------------------------------
@@ -182,6 +198,7 @@ BASE_FILE = DATA_FOLDER / "food_loc_exact.xlsx"
 # ---------------------------------------------------------
 
 USER_LOCATION_COLUMNS = [
+    "Supabase ID",
     "Location Name",
     "Brief Description",
     "Region Hint",
@@ -236,6 +253,7 @@ def load_user_locations():
     additions = pd.DataFrame(records)
 
     rename_columns = {
+        "id": "Supabase ID",
         "location_name": "Location Name",
         "brief_description": "Brief Description",
         "region_hint": "Region Hint",
@@ -327,6 +345,22 @@ def delete_all_user_locations():
         .execute()
     )
 
+def delete_selected_user_locations(location_ids):
+    """
+    Permanently delete selected locations from Supabase
+    using their unique database IDs.
+    """
+
+    if not location_ids:
+        return
+
+    (
+        get_supabase()
+        .table("food_locations")
+        .delete()
+        .in_("id", location_ids)
+        .execute()
+    )
 
 def refresh_user_locations():
     """
@@ -1346,7 +1380,6 @@ st.caption(
     f"{visible_user_locations:,}."
 )
 
-
 # ---------------------------------------------------------
 # USER-ADDED LOCATION MANAGEMENT
 # ---------------------------------------------------------
@@ -1373,31 +1406,186 @@ if not st.session_state.user_locations.empty:
             hide_index=True
         )
 
+        # -------------------------------------------------
+        # SELECTIVE DELETE
+        # -------------------------------------------------
+
+        st.markdown("### Delete selected locations")
+
+        st.caption(
+            "Select one or more locations to permanently "
+            "remove from the map."
+        )
+
+        management_df = (
+            st.session_state.user_locations.copy()
+        )
+
+        # Create unique, readable labels.
+        management_df["Delete Label"] = (
+            management_df["Location Name"]
+            .fillna("Unnamed location")
+            .astype(str)
+            + " — "
+            + management_df["Region Hint"]
+            .fillna("Unknown region")
+            .astype(str)
+            + " ("
+            + management_df["Latitude"]
+            .round(5)
+            .astype(str)
+            + ", "
+            + management_df["Longitude"]
+            .round(5)
+            .astype(str)
+            + ")"
+        )
+
+        selected_for_deletion = st.multiselect(
+            "Locations to delete",
+            options=management_df[
+                "Delete Label"
+            ].tolist(),
+            placeholder="Select locations...",
+            key="locations_to_delete"
+        )
+
+        if selected_for_deletion:
+
+            selected_rows = management_df[
+                management_df[
+                    "Delete Label"
+                ].isin(selected_for_deletion)
+            ].copy()
+
+            st.caption(
+                f"{len(selected_rows):,} "
+                "location(s) selected."
+            )
+
+            confirm_selected_delete = st.checkbox(
+                "I understand the selected locations "
+                "will be permanently deleted.",
+                key="confirm_selected_delete"
+            )
+
+            if st.button(
+                "Delete selected locations",
+                type="secondary",
+                disabled=not confirm_selected_delete
+            ):
+
+                try:
+
+                    location_ids = (
+                        selected_rows[
+                            "Supabase ID"
+                        ]
+                        .dropna()
+                        .astype(int)
+                        .tolist()
+                    )
+
+                    if not location_ids:
+                        st.error(
+                            "No valid Supabase IDs were found "
+                            "for the selected locations."
+                        )
+
+                    else:
+
+                        delete_selected_user_locations(
+                            location_ids
+                        )
+
+                        # Reload the remaining locations
+                        # directly from Supabase.
+                        refresh_user_locations()
+
+                        # Remove previous map-centering state,
+                        # because that point may have been deleted.
+                        st.session_state.pop(
+                            "new_location_latitude",
+                            None
+                        )
+
+                        st.session_state.pop(
+                            "new_location_longitude",
+                            None
+                        )
+
+                        # Clear selection state before rerunning.
+                        st.session_state.pop(
+                            "locations_to_delete",
+                            None
+                        )
+
+                        st.session_state.pop(
+                            "confirm_selected_delete",
+                            None
+                        )
+
+                        st.session_state[
+                            "location_added_message"
+                        ] = (
+                            f"{len(location_ids):,} "
+                            "location(s) were deleted."
+                        )
+
+                        st.rerun()
+
+                except Exception as error:
+
+                    st.error(
+                        "The selected locations could "
+                        "not be deleted."
+                    )
+
+                    with st.expander(
+                        "Technical details"
+                    ):
+                        st.code(str(error))
+
+        st.divider()
+
+        # -------------------------------------------------
+        # DOWNLOAD
+        # -------------------------------------------------
+
         downloadable_data = (
             st.session_state.user_locations
+            .drop(
+                columns=["Supabase ID"],
+                errors="ignore"
+            )
             .to_csv(index=False)
             .encode("utf-8")
         )
 
         st.download_button(
-            label=(
-                "Download user-added locations"
-            ),
+            label="Download user-added locations",
             data=downloadable_data,
-            file_name=(
-                "user_added_locations.csv"
-            ),
+            file_name="user_added_locations.csv",
             mime="text/csv"
         )
 
         st.caption(
-            "User-added locations are "
-            "stored permanently in Supabase."
+            "User-added locations are stored "
+            "permanently in Supabase."
         )
+
+        st.divider()
+
+        # -------------------------------------------------
+        # DELETE ALL
+        # -------------------------------------------------
+
+        st.markdown("### Delete all locations")
 
         confirm_delete = st.checkbox(
             "I understand this will permanently "
-            "delete all user-added locations."
+            "delete all user-added locations.",
+            key="confirm_delete_all"
         )
 
         if st.button(
@@ -1422,9 +1610,7 @@ if not st.session_state.user_locations.empty:
                     None
                 )
 
-                st.session_state[
-                    "location_added_message"
-                ] = (
+                st.session_state.location_added_message = (
                     "All user-added locations "
                     "were deleted."
                 )
