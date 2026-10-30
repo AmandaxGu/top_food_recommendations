@@ -3,6 +3,10 @@ import pandas as pd
 import pydeck as pdk
 import streamlit as st
 
+from urllib.parse import parse_qs, unquote, urlparse
+from urllib.request import Request, urlopen
+import re
+
 
 # ---------------------------------------------------------
 # PAGE CONFIGURATION
@@ -258,6 +262,272 @@ base_df = load_base_locations()
 if "user_locations" not in st.session_state:
     st.session_state.user_locations = load_user_locations()
 
+# ---------------------------------------------------------
+# GOOGLE MAPS URL PARSING
+# ---------------------------------------------------------
+
+def resolve_google_maps_url(url):
+    """
+    Expand shortened Google Maps URLs such as maps.app.goo.gl.
+
+    Full Google Maps URLs are returned unchanged.
+    """
+    clean_url = url.strip()
+
+    if not clean_url:
+        raise ValueError("Enter a Google Maps URL.")
+
+    parsed_url = urlparse(clean_url)
+
+    if parsed_url.scheme not in {"http", "https"}:
+        raise ValueError(
+            "The Google Maps URL must begin with http:// or https://."
+        )
+
+    hostname = parsed_url.netloc.lower()
+
+    allowed_google_hosts = (
+        "google.com",
+        "www.google.com",
+        "maps.google.com",
+        "maps.app.goo.gl",
+        "goo.gl",
+    )
+
+    is_google_url = any(
+        hostname == host or hostname.endswith(f".{host}")
+        for host in allowed_google_hosts
+    )
+
+    if not is_google_url:
+        raise ValueError(
+            "Enter a URL copied from Google Maps."
+        )
+
+    # Shortened URLs need to be expanded before parsing.
+    if hostname in {"maps.app.goo.gl", "goo.gl"}:
+        request = Request(
+            clean_url,
+            headers={
+                "User-Agent": (
+                    "Mozilla/5.0 AppleWebKit/537.36 "
+                    "Chrome/120.0 Safari/537.36"
+                )
+            }
+        )
+
+        try:
+            with urlopen(request, timeout=10) as response:
+                return response.geturl()
+
+        except Exception as error:
+            raise ValueError(
+                "The shortened Google Maps URL could not be expanded. "
+                "In Google Maps, use Share > Copy link and try again. "
+                f"Technical detail: {error}"
+            ) from error
+
+    return clean_url
+
+
+def clean_google_place_name(raw_name):
+    """
+    Convert a Google Maps URL name into readable text.
+    """
+    if not raw_name:
+        return None
+
+    clean_name = unquote(raw_name)
+
+    clean_name = clean_name.replace("+", " ")
+    clean_name = clean_name.replace("_", " ")
+
+    # Remove repeated whitespace.
+    clean_name = re.sub(r"\s+", " ", clean_name).strip()
+
+    return clean_name or None
+
+
+def extract_name_from_google_url(url):
+    """
+    Extract a place name from common Google Maps URL formats.
+    """
+    decoded_url = unquote(url)
+    parsed_url = urlparse(decoded_url)
+    query_parameters = parse_qs(parsed_url.query)
+
+    # Most common format:
+    # google.com/maps/place/PLACE+NAME/@latitude,longitude,...
+    place_match = re.search(
+        r"/maps/(?:place|search)/([^/@?]+)",
+        decoded_url,
+        flags=re.IGNORECASE
+    )
+
+    if place_match:
+        possible_name = clean_google_place_name(
+            place_match.group(1)
+        )
+
+        if possible_name:
+            return possible_name
+
+    # Some URLs store the place/search name in query parameters.
+    for parameter_name in ["query", "q", "destination"]:
+        parameter_values = query_parameters.get(
+            parameter_name,
+            []
+        )
+
+        if not parameter_values:
+            continue
+
+        possible_name = clean_google_place_name(
+            parameter_values[0]
+        )
+
+        if not possible_name:
+            continue
+
+        # Do not use a coordinate pair as the location name.
+        coordinate_only = re.fullmatch(
+            r"\s*-?\d+(?:\.\d+)?\s*,\s*"
+            r"-?\d+(?:\.\d+)?\s*",
+            possible_name
+        )
+
+        if not coordinate_only:
+            return possible_name
+
+    return None
+
+
+def extract_coordinates_from_google_url(url):
+    """
+    Extract latitude and longitude from common Google Maps URL
+    patterns.
+    """
+    decoded_url = unquote(url)
+    parsed_url = urlparse(decoded_url)
+    query_parameters = parse_qs(parsed_url.query)
+
+    coordinate_patterns = [
+        # Standard Maps URL:
+        # /@38.881600,-77.091000,17z
+        r"@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)",
+
+        # Google Maps data block:
+        # !3d38.881600!4d-77.091000
+        r"!3d(-?\d+(?:\.\d+)?).*?!4d(-?\d+(?:\.\d+)?)",
+
+        # Alternate data block:
+        # !2d-77.091000!3d38.881600
+        # This pattern is longitude first, latitude second.
+        r"!2d(-?\d+(?:\.\d+)?).*?!3d(-?\d+(?:\.\d+)?)",
+    ]
+
+    # Standard @latitude,longitude pattern.
+    standard_match = re.search(
+        coordinate_patterns[0],
+        decoded_url
+    )
+
+    if standard_match:
+        latitude = float(standard_match.group(1))
+        longitude = float(standard_match.group(2))
+        return latitude, longitude
+
+    # !3d latitude and !4d longitude.
+    data_match = re.search(
+        coordinate_patterns[1],
+        decoded_url
+    )
+
+    if data_match:
+        latitude = float(data_match.group(1))
+        longitude = float(data_match.group(2))
+        return latitude, longitude
+
+    # !2d longitude and !3d latitude.
+    alternate_data_match = re.search(
+        coordinate_patterns[2],
+        decoded_url
+    )
+
+    if alternate_data_match:
+        longitude = float(alternate_data_match.group(1))
+        latitude = float(alternate_data_match.group(2))
+        return latitude, longitude
+
+    # Query parameters such as:
+    # ?query=38.881600,-77.091000
+    # ?q=38.881600,-77.091000
+    for parameter_name in [
+        "query",
+        "q",
+        "destination",
+        "ll"
+    ]:
+        parameter_values = query_parameters.get(
+            parameter_name,
+            []
+        )
+
+        for parameter_value in parameter_values:
+            coordinate_match = re.search(
+                r"(-?\d+(?:\.\d+)?)\s*,\s*"
+                r"(-?\d+(?:\.\d+)?)",
+                parameter_value
+            )
+
+            if coordinate_match:
+                latitude = float(
+                    coordinate_match.group(1)
+                )
+                longitude = float(
+                    coordinate_match.group(2)
+                )
+                return latitude, longitude
+
+    raise ValueError(
+        "Coordinates were not found in this Google Maps URL. "
+        "Open the exact place or dropped pin in Google Maps, "
+        "select Share, and copy that link."
+    )
+
+
+def parse_google_maps_url(url):
+    """
+    Resolve a Google Maps URL and return its name and coordinates.
+    """
+    resolved_url = resolve_google_maps_url(url)
+
+    place_name = extract_name_from_google_url(
+        resolved_url
+    )
+
+    latitude, longitude = (
+        extract_coordinates_from_google_url(
+            resolved_url
+        )
+    )
+
+    if not -90 <= latitude <= 90:
+        raise ValueError(
+            "The latitude extracted from the URL is invalid."
+        )
+
+    if not -180 <= longitude <= 180:
+        raise ValueError(
+            "The longitude extracted from the URL is invalid."
+        )
+
+    return {
+        "name": place_name,
+        "latitude": latitude,
+        "longitude": longitude,
+        "resolved_url": resolved_url,
+    }
 
 # ---------------------------------------------------------
 # ADD-LOCATION FORM
@@ -268,14 +538,21 @@ with st.expander(
     expanded=False
 ):
 
+    st.caption(
+        "Open a place or dropped pin in Google Maps, select "
+        "Share, and paste the copied link below."
+    )
+
     with st.form(
         key="add_location_form",
         clear_on_submit=True
     ):
 
-        place_name = st.text_input(
-            "Place name",
-            placeholder="Example: Epic Matcha and Coffee Shop"
+        google_maps_url = st.text_input(
+            "Google Maps URL",
+            placeholder=(
+                "https://maps.app.goo.gl/..."
+            )
         )
 
         place_type = st.text_input(
@@ -288,30 +565,6 @@ with st.expander(
             placeholder="Example: Arlington, VA"
         )
 
-        coordinate_columns = st.columns(2)
-
-        with coordinate_columns[0]:
-            latitude = st.number_input(
-                "Latitude",
-                min_value=-90.0,
-                max_value=90.0,
-                value=None,
-                step=0.000001,
-                format="%.6f",
-                placeholder="38.881600"
-            )
-
-        with coordinate_columns[1]:
-            longitude = st.number_input(
-                "Longitude",
-                min_value=-180.0,
-                max_value=180.0,
-                value=None,
-                step=0.000001,
-                format="%.6f",
-                placeholder="-77.091000"
-            )
-
         submitted = st.form_submit_button(
             "Add location",
             type="primary"
@@ -319,159 +572,189 @@ with st.expander(
 
     if submitted:
 
-        clean_name = place_name.strip()
+        clean_url = google_maps_url.strip()
         clean_type = place_type.strip()
         clean_region = region.strip()
 
-        if not clean_name:
-            st.error("Enter a place name.")
-
-        elif latitude is None or longitude is None:
-            st.error(
-                "Enter both latitude and longitude."
-            )
+        if not clean_url:
+            st.error("Enter a Google Maps URL.")
 
         else:
-            new_type = (
-                clean_type
-                if clean_type
-                else "User-added location"
-            )
-
-            new_region = (
-                clean_region
-                if clean_region
-                else "User added"
-            )
-
-            # Combine the original and user-added locations
-            # so duplicates can be checked against both.
-            all_current_locations = pd.concat(
-                [
-                    base_df,
-                    st.session_state.user_locations
-                ],
-                ignore_index=True,
-                sort=False
-            )
-
-            all_current_locations["Latitude"] = pd.to_numeric(
-                all_current_locations["Latitude"],
-                errors="coerce"
-            )
-
-            all_current_locations["Longitude"] = pd.to_numeric(
-                all_current_locations["Longitude"],
-                errors="coerce"
-            )
-
-            duplicate = (
-                all_current_locations["Location Name"]
-                .fillna("")
-                .astype(str)
-                .str.strip()
-                .str.casefold()
-                .eq(clean_name.casefold())
-                &
-                all_current_locations["Latitude"]
-                .round(5)
-                .eq(round(float(latitude), 5))
-                &
-                all_current_locations["Longitude"]
-                .round(5)
-                .eq(round(float(longitude), 5))
-            ).any()
-
-            if duplicate:
-                st.warning(
-                    "A location with the same name and "
-                    "coordinates already exists."
+            try:
+                parsed_location = parse_google_maps_url(
+                    clean_url
                 )
 
-            else:
-                new_location = pd.DataFrame(
-                    [
-                        {
-                            "Location Name": clean_name,
-                            "Brief Description": new_type,
-                            "Region Hint": new_region,
-                            "Latitude": float(latitude),
-                            "Longitude": float(longitude),
-                            "Coordinate Confidence / Basis": (
-                                "Coordinates entered by user"
-                            ),
-                            "Added By User": True
-                        }
-                    ]
+                clean_name = parsed_location["name"]
+                latitude = parsed_location["latitude"]
+                longitude = parsed_location["longitude"]
+
+                if not clean_name:
+                    clean_name = (
+                        f"Google Maps location "
+                        f"({latitude:.5f}, {longitude:.5f})"
+                    )
+
+                new_type = (
+                    clean_type
+                    if clean_type
+                    else "User-added location"
                 )
 
-                # Add the new row to session state
-                st.session_state.user_locations = pd.concat(
+                new_region = (
+                    clean_region
+                    if clean_region
+                    else "User added"
+                )
+
+                # Combine original and user-added locations
+                # so duplicate checks cover both datasets.
+                all_current_locations = pd.concat(
                     [
-                        st.session_state.user_locations,
-                        new_location
+                        base_df,
+                        st.session_state.user_locations
                     ],
-                    ignore_index=True
+                    ignore_index=True,
+                    sort=False
                 )
 
-                # Ensure proper coordinate types
-                st.session_state.user_locations["Latitude"] = (
+                all_current_locations["Latitude"] = (
                     pd.to_numeric(
-                        st.session_state.user_locations["Latitude"],
+                        all_current_locations["Latitude"],
                         errors="coerce"
                     )
                 )
 
-                st.session_state.user_locations["Longitude"] = (
+                all_current_locations["Longitude"] = (
                     pd.to_numeric(
-                        st.session_state.user_locations["Longitude"],
+                        all_current_locations["Longitude"],
                         errors="coerce"
                     )
                 )
 
-                # Save user-added locations.
-                # This automatically creates the CSV if it
-                # does not already exist.
-                st.session_state.user_locations.to_csv(
-                    USER_LOCATIONS_FILE,
-                    index=False
-                )
+                # Treat matching coordinates as duplicates,
+                # even if Google formats the name differently.
+                duplicate = (
+                    all_current_locations["Latitude"]
+                    .round(5)
+                    .eq(round(float(latitude), 5))
+                    &
+                    all_current_locations["Longitude"]
+                    .round(5)
+                    .eq(round(float(longitude), 5))
+                ).any()
 
-                # Make sure the new location type remains selected
-                # after the application reruns.
-                if "selected_location_types" not in st.session_state:
-                    st.session_state.selected_location_types = [
-                        new_type
-                    ]
-
-                elif (
-                    new_type
-                    not in st.session_state.selected_location_types
-                ):
-                    st.session_state.selected_location_types.append(
-                        new_type
+                if duplicate:
+                    st.warning(
+                        "A location with these coordinates "
+                        "already exists."
                     )
 
-                # Make sure user-added locations are visible
-                st.session_state.show_user_added = True
+                else:
+                    new_location = pd.DataFrame(
+                        [
+                            {
+                                "Location Name": clean_name,
+                                "Brief Description": new_type,
+                                "Region Hint": new_region,
+                                "Latitude": float(latitude),
+                                "Longitude": float(longitude),
+                                "Coordinate Confidence / Basis": (
+                                    "Extracted from Google Maps URL"
+                                ),
+                                "Added By User": True
+                            }
+                        ]
+                    )
 
-                # Save the new coordinates so the map can zoom
-                # to the newly added location after rerunning.
-                st.session_state.new_location_latitude = float(
-                    latitude
+                    st.session_state.user_locations = pd.concat(
+                        [
+                            st.session_state.user_locations,
+                            new_location
+                        ],
+                        ignore_index=True
+                    )
+
+                    st.session_state.user_locations[
+                        "Latitude"
+                    ] = pd.to_numeric(
+                        st.session_state.user_locations[
+                            "Latitude"
+                        ],
+                        errors="coerce"
+                    )
+
+                    st.session_state.user_locations[
+                        "Longitude"
+                    ] = pd.to_numeric(
+                        st.session_state.user_locations[
+                            "Longitude"
+                        ],
+                        errors="coerce"
+                    )
+
+                    # Make sure the data folder exists before
+                    # attempting to save the CSV.
+                    DATA_FOLDER.mkdir(
+                        parents=True,
+                        exist_ok=True
+                    )
+
+                    st.session_state.user_locations.to_csv(
+                        USER_LOCATIONS_FILE,
+                        index=False
+                    )
+
+                    if (
+                        "selected_location_types"
+                        not in st.session_state
+                    ):
+                        st.session_state[
+                            "selected_location_types"
+                        ] = [new_type]
+
+                    elif (
+                        new_type
+                        not in st.session_state[
+                            "selected_location_types"
+                        ]
+                    ):
+                        st.session_state[
+                            "selected_location_types"
+                        ].append(new_type)
+
+                    st.session_state.show_user_added = True
+
+                    st.session_state[
+                        "new_location_latitude"
+                    ] = float(latitude)
+
+                    st.session_state[
+                        "new_location_longitude"
+                    ] = float(longitude)
+
+                    st.session_state[
+                        "location_added_message"
+                    ] = (
+                        f"{clean_name} was added to the map "
+                        f"at {latitude:.6f}, "
+                        f"{longitude:.6f}."
+                    )
+
+                    st.rerun()
+
+            except ValueError as error:
+                st.error(str(error))
+
+            except Exception as error:
+                st.error(
+                    "The Google Maps URL could not be processed. "
+                    "Open the exact place in Google Maps, select "
+                    "Share, and copy the link again."
                 )
 
-                st.session_state.new_location_longitude = float(
-                    longitude
-                )
-
-                st.session_state.location_added_message = (
-                    f"{clean_name} was added to the map."
-                )
-
-                st.rerun()
-
-
+                with st.expander("Technical details"):
+                    st.code(str(error))
 # ---------------------------------------------------------
 # COMBINE ORIGINAL AND USER-ADDED DATA
 # ---------------------------------------------------------
