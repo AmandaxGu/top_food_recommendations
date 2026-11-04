@@ -10,21 +10,6 @@ from supabase import create_client
 
 
 
-url = st.secrets["supabase"]["url"]
-key = st.secrets["supabase"]["key"]
-
-supabase = create_client(url, key)
-
-response = (
-    supabase
-    .table("food_locations")
-    .select("*")
-    .execute()
-)
-
-print(response.data)
-
-
 # ---------------------------------------------------------
 # PAGE CONFIGURATION
 # ---------------------------------------------------------
@@ -215,16 +200,54 @@ USER_LOCATION_COLUMNS = [
 # ---------------------------------------------------------
 
 @st.cache_resource
+@st.cache_resource
+def create_supabase_client(supabase_url, supabase_key):
+    """
+    Create and cache a Supabase client.
+
+    Passing the URL and key as arguments means Streamlit creates
+    a new cached client if either secret changes.
+    """
+    return create_client(
+        supabase_url,
+        supabase_key
+    )
+
+
 def get_supabase():
     """
-    Create one reusable Supabase client.
-    Credentials come from Streamlit Secrets.
+    Read the current credentials and return the matching client.
     """
+    supabase_url = str(
+        st.secrets["supabase"]["url"]
+    ).strip().rstrip("/")
 
-    supabase_url = st.secrets["supabase"]["url"]
-    supabase_key = st.secrets["supabase"]["key"]
+    supabase_key = str(
+        st.secrets["supabase"]["key"]
+    ).strip()
 
-    return create_client(
+    if supabase_url.endswith("/rest/v1"):
+        raise ValueError(
+            "The Supabase URL must be the base project URL. "
+            "Remove '/rest/v1' from .streamlit/secrets.toml."
+        )
+
+    if not supabase_url.startswith("https://"):
+        raise ValueError(
+            "The Supabase URL must begin with https://."
+        )
+
+    if not supabase_url.endswith(".supabase.co"):
+        raise ValueError(
+            "The Supabase URL should end with .supabase.co."
+        )
+
+    if not supabase_key:
+        raise ValueError(
+            "The Supabase key is missing."
+        )
+
+    return create_supabase_client(
         supabase_url,
         supabase_key
     )
@@ -234,14 +257,19 @@ def load_user_locations():
     """
     Load all permanently saved user locations from Supabase.
     """
+    try:
+        response = (
+            get_supabase()
+            .table("food_locations")
+            .select("*")
+            .order("id")
+            .execute()
+        )
 
-    response = (
-        get_supabase()
-        .table("food_locations")
-        .select("*")
-        .order("id")
-        .execute()
-    )
+    except Exception as error:
+        raise RuntimeError(
+            f"Supabase could not read food_locations: {error}"
+        ) from error
 
     records = response.data or []
 
@@ -325,23 +353,6 @@ def save_user_location(location):
         get_supabase()
         .table("food_locations")
         .insert(database_row)
-        .execute()
-    )
-
-def delete_selected_user_locations(location_ids):
-    """
-    Permanently delete selected locations from Supabase
-    using their unique database IDs.
-    """
-
-    if not location_ids:
-        return
-
-    (
-        get_supabase()
-        .table("food_locations")
-        .delete()
-        .in_("id", location_ids)
         .execute()
     )
 
