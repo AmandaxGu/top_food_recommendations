@@ -8,27 +8,6 @@ import pydeck as pdk
 import streamlit as st
 from supabase import create_client
 
-import sys
-import importlib.metadata
-
-st.write("Python:", sys.version)
-
-for package in [
-    "streamlit",
-    "supabase",
-    "postgrest",
-    "httpx"
-]:
-    try:
-        st.write(
-            package,
-            importlib.metadata.version(package)
-        )
-    except Exception:
-        st.write(package, "not found")
-
-
-
 # ---------------------------------------------------------
 # PAGE CONFIGURATION
 # ---------------------------------------------------------
