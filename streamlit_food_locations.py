@@ -213,11 +213,8 @@ def create_supabase_client(supabase_url, supabase_key):
         supabase_key
     )
 
-
 def get_supabase():
-    """
-    Read the current credentials and return the matching client.
-    """
+
     supabase_url = str(
         st.secrets["supabase"]["url"]
     ).strip().rstrip("/")
@@ -226,31 +223,56 @@ def get_supabase():
         st.secrets["supabase"]["key"]
     ).strip()
 
-    if supabase_url.endswith("/rest/v1"):
-        raise ValueError(
-            "The Supabase URL must be the base project URL. "
-            "Remove '/rest/v1' from .streamlit/secrets.toml."
-        )
+    st.write("DEBUG Supabase URL:")
+    st.code(repr(supabase_url))
 
-    if not supabase_url.startswith("https://"):
-        raise ValueError(
-            "The Supabase URL must begin with https://."
-        )
-
-    if not supabase_url.endswith(".supabase.co"):
-        raise ValueError(
-            "The Supabase URL should end with .supabase.co."
-        )
-
-    if not supabase_key:
-        raise ValueError(
-            "The Supabase key is missing."
-        )
+    st.write("Ends with /rest/v1:")
+    st.write(
+        supabase_url.endswith("/rest/v1")
+    )
 
     return create_supabase_client(
         supabase_url,
         supabase_key
     )
+
+# def get_supabase():
+#     """
+#     Read the current credentials and return the matching client.
+#     """
+#     supabase_url = str(
+#         st.secrets["supabase"]["url"]
+#     ).strip().rstrip("/")
+
+#     supabase_key = str(
+#         st.secrets["supabase"]["key"]
+#     ).strip()
+
+#     if supabase_url.endswith("/rest/v1"):
+#         raise ValueError(
+#             "The Supabase URL must be the base project URL. "
+#             "Remove '/rest/v1' from .streamlit/secrets.toml."
+#         )
+
+#     if not supabase_url.startswith("https://"):
+#         raise ValueError(
+#             "The Supabase URL must begin with https://."
+#         )
+
+#     if not supabase_url.endswith(".supabase.co"):
+#         raise ValueError(
+#             "The Supabase URL should end with .supabase.co."
+#         )
+
+#     if not supabase_key:
+#         raise ValueError(
+#             "The Supabase key is missing."
+#         )
+
+#     return create_supabase_client(
+#         supabase_url,
+#         supabase_key
+#     )
 
 
 def load_user_locations():
