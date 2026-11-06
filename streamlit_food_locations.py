@@ -199,22 +199,43 @@ USER_LOCATION_COLUMNS = [
 # SUPABASE CONNECTION
 # ---------------------------------------------------------
 
-@st.cache_resource
-@st.cache_resource
-def create_supabase_client(supabase_url, supabase_key):
-    """
-    Create and cache a Supabase client.
 
-    Passing the URL and key as arguments means Streamlit creates
-    a new cached client if either secret changes.
-    """
-    return create_client(
-        supabase_url,
-        supabase_key
-    )
+# @st.cache_resource
+# def create_supabase_client(supabase_url, supabase_key):
+#     """
+#     Create and cache a Supabase client.
 
+#     Passing the URL and key as arguments means Streamlit creates
+#     a new cached client if either secret changes.
+#     """
+#     return create_client(
+#         supabase_url,
+#         supabase_key
+#     )
+
+# def get_supabase():
+
+#     supabase_url = str(
+#         st.secrets["supabase"]["url"]
+#     ).strip().rstrip("/")
+
+#     supabase_key = str(
+#         st.secrets["supabase"]["key"]
+#     ).strip()
+
+#     st.write("DEBUG Supabase URL:")
+#     st.code(repr(supabase_url))
+
+#     st.write("Ends with /rest/v1:")
+#     st.write(
+#         supabase_url.endswith("/rest/v1")
+#     )
+
+#     return create_supabase_client(
+#         supabase_url,
+#         supabase_key
+#     )
 def get_supabase():
-
     supabase_url = str(
         st.secrets["supabase"]["url"]
     ).strip().rstrip("/")
@@ -223,15 +244,7 @@ def get_supabase():
         st.secrets["supabase"]["key"]
     ).strip()
 
-    st.write("DEBUG Supabase URL:")
-    st.code(repr(supabase_url))
-
-    st.write("Ends with /rest/v1:")
-    st.write(
-        supabase_url.endswith("/rest/v1")
-    )
-
-    return create_supabase_client(
+    return create_client(
         supabase_url,
         supabase_key
     )
