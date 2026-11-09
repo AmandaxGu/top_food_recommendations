@@ -6,6 +6,7 @@ import re
 import pandas as pd
 import pydeck as pdk
 import streamlit as st
+import supabase
 from supabase import create_client
 
 # ---------------------------------------------------------
@@ -16,6 +17,71 @@ st.set_page_config(
     page_title="My Food Spots",
     layout="wide"
 )
+
+# ---------------------------------------------------------
+# SUPABASE CONNECTION
+# ---------------------------------------------------------
+
+@st.cache_resource
+def create_supabase_connection():
+    """
+    Create and cache one Supabase client for the entire app.
+    """
+
+    supabase_url = str(
+        st.secrets["supabase"]["url"]
+    ).strip().rstrip("/")
+
+    supabase_key = str(
+        st.secrets["supabase"]["key"]
+    ).strip()
+
+    if "/rest/v1" in supabase_url:
+        raise ValueError(
+            "The Supabase URL must be the base project URL, "
+            "not a REST API URL. Remove '/rest/v1' from the URL."
+        )
+
+    if not supabase_url.startswith("https://"):
+        raise ValueError(
+            "The Supabase URL must begin with https://."
+        )
+
+    if not supabase_url.endswith(".supabase.co"):
+        raise ValueError(
+            "The Supabase URL must end with .supabase.co."
+        )
+
+    if not supabase_key:
+        raise ValueError(
+            "The Supabase key is missing."
+        )
+
+    return create_client(
+        supabase_url,
+        supabase_key
+    )
+
+
+try:
+    supabase_client = create_supabase_connection()
+
+except Exception as error:
+    supabase_client = None
+    supabase_connection_error = str(error)
+
+
+def get_supabase():
+
+    if supabase_client is None:
+        raise RuntimeError(
+            "Supabase is currently unavailable. "
+            f"{supabase_connection_error}"
+        )
+
+    return supabase_client
+
+######################################
 
 st.markdown(
     """
@@ -191,99 +257,6 @@ USER_LOCATION_COLUMNS = [
     "Added By User",
     "Google Maps URL"
 ]
-
-
-# ---------------------------------------------------------
-# SUPABASE CONNECTION
-# ---------------------------------------------------------
-
-
-# @st.cache_resource
-# def create_supabase_client(supabase_url, supabase_key):
-#     """
-#     Create and cache a Supabase client.
-
-#     Passing the URL and key as arguments means Streamlit creates
-#     a new cached client if either secret changes.
-#     """
-#     return create_client(
-#         supabase_url,
-#         supabase_key
-#     )
-
-# def get_supabase():
-
-#     supabase_url = str(
-#         st.secrets["supabase"]["url"]
-#     ).strip().rstrip("/")
-
-#     supabase_key = str(
-#         st.secrets["supabase"]["key"]
-#     ).strip()
-
-#     st.write("DEBUG Supabase URL:")
-#     st.code(repr(supabase_url))
-
-#     st.write("Ends with /rest/v1:")
-#     st.write(
-#         supabase_url.endswith("/rest/v1")
-#     )
-
-#     return create_supabase_client(
-#         supabase_url,
-#         supabase_key
-#     )
-def get_supabase():
-    supabase_url = str(
-        st.secrets["supabase"]["url"]
-    ).strip().rstrip("/")
-
-    supabase_key = str(
-        st.secrets["supabase"]["key"]
-    ).strip()
-
-    return create_client(
-        supabase_url,
-        supabase_key
-    )
-
-# def get_supabase():
-#     """
-#     Read the current credentials and return the matching client.
-#     """
-#     supabase_url = str(
-#         st.secrets["supabase"]["url"]
-#     ).strip().rstrip("/")
-
-#     supabase_key = str(
-#         st.secrets["supabase"]["key"]
-#     ).strip()
-
-#     if supabase_url.endswith("/rest/v1"):
-#         raise ValueError(
-#             "The Supabase URL must be the base project URL. "
-#             "Remove '/rest/v1' from .streamlit/secrets.toml."
-#         )
-
-#     if not supabase_url.startswith("https://"):
-#         raise ValueError(
-#             "The Supabase URL must begin with https://."
-#         )
-
-#     if not supabase_url.endswith(".supabase.co"):
-#         raise ValueError(
-#             "The Supabase URL should end with .supabase.co."
-#         )
-
-#     if not supabase_key:
-#         raise ValueError(
-#             "The Supabase key is missing."
-#         )
-
-#     return create_supabase_client(
-#         supabase_url,
-#         supabase_key
-#     )
 
 
 def load_user_locations():
